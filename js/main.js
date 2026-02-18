@@ -1,37 +1,53 @@
 /* ================================================
-   ARDSLEY CAR WASH — Production JavaScript
+   THE ARDSLEY CARWASH — Production JavaScript
    ================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // ===== NAVBAR SCROLL EFFECT =====
   const navbar = document.getElementById('navbar');
-  const onScroll = () => {
+  window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, { passive: true });
 
 
   // ===== MOBILE MENU =====
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    navLinks.classList.add('open');
+    if (mobileOverlay) mobileOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    if (navLinks.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMenu);
+  }
 
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', closeMenu);
   });
 
 
-  // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+  // ===== SMOOTH SCROLL =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
@@ -43,13 +59,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  // ===== FAQ ACCORDION =====
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all other items
+      faqItems.forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+
+      // Toggle current
+      item.classList.toggle('active', !isActive);
+    });
+  });
+
+
   // ===== BOOKING FORM =====
   const bookingForm = document.getElementById('bookingForm');
   const confirmation = document.getElementById('bookingConfirmation');
   const bookAgain = document.getElementById('bookAgain');
 
   if (bookingForm) {
-    // Set min date to today
     const dateInput = document.getElementById('date');
     if (dateInput) {
       const today = new Date().toISOString().split('T')[0];
@@ -81,12 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const input = newsletterForm.querySelector('input');
       const btn = newsletterForm.querySelector('button');
       const originalText = btn.textContent;
-      btn.textContent = 'Subscribed!';
+      btn.textContent = 'Done!';
       btn.style.background = '#2ecc71';
+      btn.style.color = '#fff';
       input.value = '';
       setTimeout(() => {
         btn.textContent = originalText;
         btn.style.background = '';
+        btn.style.color = '';
       }, 3000);
     });
   }
@@ -126,8 +161,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => observer.observe(el));
   } else {
-    // Fallback: show all immediately
     animatedElements.forEach(el => el.classList.add('animated'));
+  }
+
+
+  // ===== COUNTER ANIMATION =====
+  const counters = document.querySelectorAll('[data-count]');
+
+  if (counters.length && 'IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-count'));
+          const isDecimal = target % 1 !== 0;
+          const duration = 2000;
+          const startTime = performance.now();
+
+          function updateCount(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease-out curve
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = target * ease;
+
+            if (isDecimal) {
+              el.textContent = current.toFixed(1);
+            } else if (target >= 1000) {
+              el.textContent = Math.floor(current).toLocaleString() + '+';
+            } else {
+              el.textContent = Math.floor(current) + '+';
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCount);
+            }
+          }
+
+          requestAnimationFrame(updateCount);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
   }
 
 
@@ -138,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      const top = section.offsetTop - 100;
+      const top = section.offsetTop - 120;
       if (window.scrollY >= top) {
         current = section.getAttribute('id');
       }

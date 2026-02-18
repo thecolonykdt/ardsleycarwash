@@ -3,30 +3,43 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ardsley Car Wash — The Gold Standard for Your Neighborhood Drive</title>
-<meta name="description" content="Premium car washing and detailing in Ardsley, NY. Family owned for over 20 years. Regular, Deluxe, Ultimate washes and full detailing services."/>
+<title>The Ardsley Carwash — Service it. Wash it. Drive out fresh.</title>
+<meta name="description" content="The Ardsley Carwash — Your neighborhood car wash in Ardsley, NY. Premium car washing, detailing, and unlimited wash memberships. Fast, friendly, community-driven."/>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://api.fontshare.com/v2/css?f[]=excon@400,500,600,700,800,900&display=swap" rel="stylesheet"/>
+
 <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
+<!-- Mobile overlay for menu -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
 <!-- ========== NAVIGATION ========== -->
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="#home" class="logo">Ardsley <span>Car Wash</span></a>
+    <a href="#home">
+      <img src="assets/The Ardsley Carwash Logo.jpg" alt="The Ardsley Carwash" class="logo-img"/>
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#services">Services</a></li>
       <li><a href="#menu">Full Menu</a></li>
       <li><a href="#membership">Membership</a></li>
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#community">Community</a></li>
-      <li><a href="#booking">Book a Wash</a></li>
+      <li><a href="#story">About Us</a></li>
+      <li><a href="#community">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#booking">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="tel:9146932200" class="nav-phone">(914) 693-2200</a>
-      <a href="#booking" class="btn btn-primary btn-nav">Schedule Now</a>
+      <a href="tel:9146932200" class="nav-phone">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (914) 693-2200
+      </a>
+      <a href="#booking" class="btn btn-yellow btn-nav">Book Now</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -36,23 +49,36 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="home">
-  <div class="hero-bg-overlay"></div>
-  <div class="hero-image-bg" style="position:absolute;inset:0;z-index:1;">
-    <img src="https://images.unsplash.com/photo-1520340356584-f9166066d675?auto=format&fit=crop&w=1920&q=80"
-         alt="Professional car wash"
-         style="width:100%;height:100%;object-fit:cover;opacity:0.18;"/>
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
   </div>
+
   <div class="container">
-    <div class="hero-content" data-animate>
-      <div class="hero-badge">&#11088; Serving Westchester for Over 20 Years</div>
-      <h1>The <em>Gold Standard</em> for Your Neighborhood Drive.</h1>
-      <p class="hero-sub">Premium care for the cars we love, right here in Ardsley, NY. You bring the grime &mdash; we bring the shine.</p>
+    <div class="hero-content">
+      <div class="hero-badge">Your Neighborhood Car Wash in Ardsley, NY</div>
+      <h1>Service it.<br/><span class="highlight-yellow">Wash it.</span><br/>Drive out <span class="highlight-red">fresh.</span></h1>
+      <p class="hero-sub">One stop for car care that stays consistent, every time.</p>
+      <p class="hero-body">From routine servicing to a proper wash and detailing, we keep your car running smooth and looking sharp. Clear pricing, skilled hands, and a finish you'll feel the moment you drive.</p>
       <div class="hero-ctas">
-        <a href="#services" class="btn btn-hero-primary">View Our Packages</a>
-        <a href="#booking" class="btn btn-hero-outline">Schedule Now &rarr;</a>
+        <a href="#booking" class="btn btn-yellow btn-lg">Book Now</a>
+        <a href="#services" class="btn btn-outline-white btn-lg">View Packages</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1520340356584-f9166066d675?auto=format&fit=crop&w=800&q=80" alt="Car being washed professionally"/>
+      <div class="hero-image-badge">
+        <span>20+</span>
+        Years Serving<br/>Westchester
       </div>
     </div>
   </div>
+
   <div class="hero-scroll-indicator">
     <div class="scroll-line"></div>
     <span>Scroll</span>
@@ -63,28 +89,28 @@
 <div class="trust-bar">
   <div class="container">
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <div class="trust-icon red">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
       </div>
-      Serving Ardsley Since 2004
+      20+ Years Local
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <div class="trust-icon blue">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
-      Family Owned &amp; Operated
+      Family Owned
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      <div class="trust-icon yellow">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      Certified Professional Detailers
+      Fast &amp; Efficient
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+      <div class="trust-icon mint">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      Eco-Friendly Practices
+      Eco-Friendly
     </div>
   </div>
 </div>
@@ -93,16 +119,16 @@
 <section id="services">
   <div class="container">
     <div class="section-header" data-animate>
-      <p class="section-label">Professional Services</p>
-      <h2 class="section-title">Car Washing Packages</h2>
-      <p class="section-subtitle">Choose the level of care your vehicle deserves.</p>
+      <p class="section-label red">Our Packages</p>
+      <h2 class="section-title">Pick Your Wash</h2>
+      <p class="section-subtitle">No guesswork. Just clean, clear packages designed to get your car looking its best.</p>
     </div>
 
     <div class="services-grid">
       <!-- REGULAR -->
       <div class="service-card" data-animate data-delay="0">
-        <div class="card-icon">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <div class="card-icon bg-blue">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
         </div>
         <h3>Regular Wash</h3>
         <div class="price">$23.06 <small>+ tax</small></div>
@@ -119,7 +145,7 @@
       <!-- DELUXE -->
       <div class="service-card featured" data-animate data-delay="100">
         <span class="card-popular">Popular</span>
-        <div class="card-icon">
+        <div class="card-icon bg-red">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <h3>Deluxe Wash</h3>
@@ -134,7 +160,7 @@
 
       <!-- ULTIMATE -->
       <div class="service-card" data-animate data-delay="200">
-        <div class="card-icon">
+        <div class="card-icon bg-yellow">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
         <h3>Ultimate Wash</h3>
@@ -153,8 +179,8 @@
     <div class="exterior-options" data-animate>
       <div class="services-grid two-col">
         <div class="service-card compact">
-          <div class="card-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div class="card-icon bg-mint">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
           <h3>Exterior Only</h3>
           <div class="price">$14.76 <small>+ tax</small></div>
@@ -165,7 +191,7 @@
           <a href="#booking" class="btn btn-outline btn-card">Select</a>
         </div>
         <div class="service-card compact">
-          <div class="card-icon">
+          <div class="card-icon bg-coral">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Ultimate Exterior</h3>
@@ -184,13 +210,23 @@
   </div>
 </section>
 
+<!-- ========== IMAGE GALLERY STRIP ========== -->
+<div class="gallery-strip">
+  <div class="gallery-scroll">
+    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" alt="Car wash foam"/>
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=600&q=80" alt="Car being washed"/>
+    <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=600&q=80" alt="Shiny clean car"/>
+    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Sports car freshly washed"/>
+  </div>
+</div>
+
 <!-- ========== FULL MENU ========== -->
 <section id="menu" class="section-alt">
   <div class="container">
     <div class="section-header" data-animate>
-      <p class="section-label">The Full Menu</p>
-      <h2 class="section-title">A La Carte &amp; Hand Wash Services</h2>
-      <p class="section-subtitle">Customize your visit with add-on services or upgrade to a premium hand wash.</p>
+      <p class="section-label blue">The Full Menu</p>
+      <h2 class="section-title">A La Carte &amp; Hand Wash</h2>
+      <p class="section-subtitle">Customize your visit with add-ons or upgrade to a premium hand wash experience.</p>
     </div>
 
     <div class="menu-columns" data-animate>
@@ -246,8 +282,8 @@
         <h3 class="mt-40">Car Detailing</h3>
         <div class="detailing-block">
           <strong>Expert Detailing Service</strong>
-          <p>We have the experience and skills necessary to tackle just about every type of job that comes our way. With Ardsley Car Wash, clients know exactly what to expect &mdash; professionalism, efficiency, and exceptional results.</p>
-          <a href="#booking" class="btn btn-gold">Inquire About Detailing &rarr;</a>
+          <p>We have the experience and skills necessary to tackle just about every type of job that comes our way. With The Ardsley Carwash, clients know exactly what to expect &mdash; professionalism, efficiency, and exceptional results.</p>
+          <a href="#booking" class="btn btn-primary">Inquire About Detailing</a>
         </div>
       </div>
     </div>
@@ -255,48 +291,102 @@
 </section>
 
 <!-- ========== MEMBERSHIP ========== -->
-<section id="membership" class="section-dark">
+<section id="membership" class="section-blue">
   <div class="container">
     <div class="section-header centered" data-animate>
-      <p class="section-label">The Inner Circle</p>
-      <h2 class="section-title">Unlimited Wash Club</h2>
-      <p class="section-subtitle">Join the Ardsley Car Wash Inner Circle. Unlimited washes, neighborhood perks, and priority service.</p>
+      <p class="section-label">Unlimited Wash Club</p>
+      <h2 class="section-title">One Membership. Unlimited Shine.</h2>
+      <p class="section-subtitle">Join the club. Skip the line. Drive in anytime and leave looking fresh.</p>
     </div>
 
-    <div class="membership-card" data-animate>
-      <div class="membership-icon">
-        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 15a7 7 0 100-14 7 7 0 000 14z"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+    <div class="membership-grid">
+      <!-- BASIC -->
+      <div class="membership-card" data-animate data-delay="0">
+        <div class="membership-icon red-bg">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+        </div>
+        <h3>Basic</h3>
+        <div class="membership-price">$29.99 <small>/mo</small></div>
+        <p class="membership-tagline">Unlimited regular washes</p>
+        <ul>
+          <li>Unlimited Regular Washes</li>
+          <li>Interior vacuum every visit</li>
+          <li>Windows cleaned</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#booking" class="btn btn-outline-white btn-full">Join Basic</a>
       </div>
-      <h3>Wash Club Membership</h3>
-      <p class="membership-tagline">One membership. Unlimited shine.</p>
-      <ul>
-        <li>Unlimited car washes every month</li>
-        <li>Priority lane access &mdash; skip the line</li>
-        <li>Exclusive member discounts on add-ons</li>
-        <li>Special seasonal promotions</li>
-        <li>Cancel anytime &mdash; no commitment</li>
-      </ul>
-      <a href="#booking" class="btn btn-gold btn-full">Join the Club &rarr;</a>
+
+      <!-- PRO (Featured) -->
+      <div class="membership-card featured" data-animate data-delay="100">
+        <div class="membership-icon yellow-bg">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Pro</h3>
+        <div class="membership-price">$39.99 <small>/mo</small></div>
+        <p class="membership-tagline">Most popular choice</p>
+        <ul>
+          <li>Unlimited Deluxe Washes</li>
+          <li>Priority lane access</li>
+          <li>Tire shine included</li>
+          <li>10% off all add-ons</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#booking" class="btn btn-yellow btn-full">Join Pro</a>
+      </div>
+
+      <!-- ULTIMATE -->
+      <div class="membership-card" data-animate data-delay="200">
+        <div class="membership-icon blue-bg">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Ultimate</h3>
+        <div class="membership-price">$54.99 <small>/mo</small></div>
+        <p class="membership-tagline">The full VIP experience</p>
+        <ul>
+          <li>Unlimited Ultimate Washes</li>
+          <li>Priority lane access</li>
+          <li>Free mat wash every visit</li>
+          <li>20% off detailing</li>
+          <li>Seasonal promotions</li>
+        </ul>
+        <a href="#booking" class="btn btn-outline-white btn-full">Join Ultimate</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== OUR STORY ========== -->
+<!-- ========== ABOUT US / STORY ========== -->
 <section id="story">
   <div class="container">
     <div class="story-grid">
       <div class="story-image" data-animate="fade-right">
-        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
-             alt="Ardsley Car Wash facility"
-             style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);"/>
+        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80" alt="The Ardsley Carwash"/>
+        <div class="story-image-accent"></div>
       </div>
       <div class="story-content" data-animate="fade-left">
-        <p class="section-label">Our Story</p>
+        <p class="section-label red">About Us</p>
         <h2>More Than Just a Wash.</h2>
-        <p>We have been washing Westchester's dirty cars for over 20 years &mdash; and we are proud of it. Ardsley Car Wash is a neighborhood landmark on Saw Mill River Road where your car gets the royal treatment every single time.</p>
-        <p>Our team of certified professionals treats every vehicle like their own. From the daily commuter to the weekend classic, we bring the same level of care that has made us the trusted choice in Ardsley, NY.</p>
+        <p>We're not a franchise. We're your neighbors. The Ardsley Carwash has been on Saw Mill River Road for over 20 years &mdash; washing cars, chatting with regulars, and making sure every vehicle leaves looking better than it came in.</p>
+        <p>We care about the community and we care about your time. If we can save you 10 minutes and make your day easier, that's a win for us.</p>
+
+        <div class="story-stats">
+          <div class="stat">
+            <div class="stat-number" data-count="20">0</div>
+            <div class="stat-label">Years Local</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="50000">0</div>
+            <div class="stat-label">Cars Washed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="4.9">0</div>
+            <div class="stat-label">Google Rating</div>
+          </div>
+        </div>
+
         <div class="story-contact">
-          <a href="tel:9146932200" class="btn btn-outline">Call Us: (914) 693-2200</a>
+          <a href="tel:9146932200" class="btn btn-blue">Call (914) 693-2200</a>
           <a href="https://maps.google.com/?q=639+Saw+Mill+River+Rd+Ardsley+NY+10502" target="_blank" class="btn btn-outline">Get Directions</a>
         </div>
       </div>
@@ -304,24 +394,24 @@
   </div>
 </section>
 
-<!-- ========== COMMUNITY / TESTIMONIALS ========== -->
-<section id="community" class="section-alt">
+<!-- ========== TESTIMONIALS ========== -->
+<section id="community" class="section-mint">
   <div class="container">
     <div class="section-header centered" data-animate>
-      <p class="section-label">What Our Neighbors Say</p>
+      <p class="section-label blue">What Neighbors Say</p>
       <h2 class="section-title">The Wall of Love</h2>
-      <p class="section-subtitle">Real reviews from real neighbors.</p>
+      <p class="section-subtitle">Real reviews from real people down the road.</p>
     </div>
 
     <div class="testimonials-grid">
       <div class="testimonial-card" data-animate data-delay="0">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"Been bringing my car here every week for the past five years. The team always does a thorough job and the prices are more than fair. Best car wash in Westchester, hands down."</p>
+        <p>"Been bringing my car here every week for five years. The team always does a thorough job and the prices are more than fair. Best car wash in Westchester, hands down."</p>
         <div class="testimonial-author">&mdash; Michael R. <span>&middot; Ardsley, NY</span></div>
       </div>
       <div class="testimonial-card" data-animate data-delay="100">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"I need my car looking sharp for client meetings and Ardsley Car Wash never lets me down. The Ultimate Wash with RAIN-X keeps my car showroom-ready all week long."</p>
+        <p>"I need my car looking sharp for client meetings and Ardsley never lets me down. The Ultimate Wash with RAIN-X keeps my car showroom-ready all week long."</p>
         <div class="testimonial-author">&mdash; Sarah L. <span>&middot; Dobbs Ferry, NY</span></div>
       </div>
       <div class="testimonial-card" data-animate data-delay="200">
@@ -333,110 +423,202 @@
   </div>
 </section>
 
-<!-- ========== BOOKING ========== -->
-<section id="booking">
+<!-- ========== FAQ ========== -->
+<section id="faq">
   <div class="container">
     <div class="section-header centered" data-animate>
-      <p class="section-label">Book Your Visit</p>
-      <h2 class="section-title">Schedule a Wash</h2>
-      <p class="section-subtitle">Quick, easy, and designed for busy professionals.</p>
+      <p class="section-label yellow">Got Questions?</p>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know before you drive in.</p>
     </div>
 
-    <div class="booking-steps" data-animate>
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Select Service</h4>
-        <p>Choose your wash package.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Choose Date &amp; Time</h4>
-        <p>Pick a convenient slot.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Vehicle Info</h4>
-        <p>Tell us about your car.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Confirm &amp; Go</h4>
-        <p>Instant confirmation.</p>
-      </div>
-    </div>
-
-    <div class="booking-form-area" data-animate>
-      <form id="bookingForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="service">Service</label>
-            <select id="service" required>
-              <option value="">Select a package...</option>
-              <option>Regular Wash — $23.06 + tax</option>
-              <option>Deluxe Wash — $26.76 + tax</option>
-              <option>Ultimate Wash — $28.60 + tax</option>
-              <option>Exterior Only — $14.76 + tax</option>
-              <option>Ultimate Exterior — $20.30 + tax</option>
-              <option>Exterior Hand Wash — $30.00</option>
-              <option>Hand Wash w/ Vacuum &amp; Tire Shine — $50.00</option>
-              <option>Car Detailing — Contact for Quote</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="vehicle">Vehicle Type</label>
-            <select id="vehicle" required>
-              <option value="">Select type...</option>
-              <option>Sedan / Coupe</option>
-              <option>SUV / Crossover</option>
-              <option>Pick-up Truck</option>
-              <option>Van / Minivan</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="date">Preferred Date</label>
-            <input type="date" id="date" required/>
-          </div>
-          <div class="form-group">
-            <label for="time">Preferred Time</label>
-            <select id="time" required>
-              <option value="">Select time...</option>
-              <option>8:00 AM</option>
-              <option>9:00 AM</option>
-              <option>10:00 AM</option>
-              <option>11:00 AM</option>
-              <option>12:00 PM</option>
-              <option>1:00 PM</option>
-              <option>2:00 PM</option>
-              <option>3:00 PM</option>
-              <option>4:00 PM</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Full name" required/>
-          </div>
-          <div class="form-group">
-            <label for="contact">Phone or Email</label>
-            <input type="text" id="contact" placeholder="How we can reach you" required/>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full btn-submit">
-          Confirm Booking &rarr;
+    <div class="faq-list" data-animate>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do I need an appointment?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-      </form>
+        <div class="faq-answer"><div class="faq-answer-inner">Nope! We're a drive-in car wash &mdash; just pull up whenever you're ready. For detailing services, we recommend booking ahead so we can reserve your spot.</div></div>
+      </div>
 
-      <div class="booking-success" id="bookingConfirmation">
-        <div class="success-icon">
-          <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does a wash take?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Our regular wash takes about 15&ndash;20 minutes. The Deluxe and Ultimate packages run 20&ndash;30 minutes. We're all about speed without cutting corners.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What payment methods do you accept?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">We accept cash, all major credit/debit cards, Apple Pay, and Google Pay. Memberships are charged monthly to your card on file.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I cancel my membership anytime?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. No contracts, no cancellation fees. You can cancel your unlimited wash membership at any time &mdash; just let us know before your next billing cycle.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you wash SUVs and trucks?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes! We handle all vehicle sizes &mdash; sedans, SUVs, pick-up trucks, and vans. Prices may vary slightly for larger vehicles on some services.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What are your hours?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">We're open Monday&ndash;Saturday, 8:00 AM to 5:00 PM, and Sunday 8:00 AM to 4:00 PM. Weather permitting &mdash; we'll post any closures on our social media.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BOOKING / CONTACT ========== -->
+<section id="booking" class="section-alt">
+  <div class="container">
+    <div class="section-header centered" data-animate>
+      <p class="section-label red">Get In Touch</p>
+      <h2 class="section-title">Book a Wash or Say Hello</h2>
+      <p class="section-subtitle">Drive in, call ahead, or drop us a message. We're here for you.</p>
+    </div>
+
+    <div class="booking-layout" data-animate>
+      <!-- LEFT: Contact Info -->
+      <div class="booking-info">
+        <h3>Visit Us</h3>
+        <p>We're right on Saw Mill River Road &mdash; you can't miss us. Drive in anytime during business hours or book ahead for detailing.</p>
+
+        <div class="info-block">
+          <div class="info-icon bg-red">
+            <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Location</h4>
+            <a href="https://maps.google.com/?q=639+Saw+Mill+River+Rd+Ardsley+NY+10502" target="_blank">639 Saw Mill River Rd, Ardsley, NY 10502</a>
+          </div>
         </div>
-        <h3>You're All Set!</h3>
-        <p>We'll confirm your appointment shortly.<br/>See you at 639 Saw Mill River Rd!</p>
-        <button class="btn btn-outline" id="bookAgain">Book Another Wash</button>
+
+        <div class="info-block">
+          <div class="info-icon bg-blue">
+            <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:9146932200">(914) 693-2200</a>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon bg-yellow">
+            <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon&ndash;Sat: 8:00 AM &ndash; 5:00 PM<br/>Sun: 8:00 AM &ndash; 4:00 PM</p>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon bg-mint">
+            <svg width="20" height="20" fill="none" stroke="#2d8a3e" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:ardsleycarwashny@gmail.com">ardsleycarwashny@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Booking Form -->
+      <div class="booking-form-area">
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Full name" required/>
+            </div>
+            <div class="form-group">
+              <label for="contact">Phone or Email</label>
+              <input type="text" id="contact" placeholder="How we can reach you" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="service">Service</label>
+              <select id="service" required>
+                <option value="">Select a package...</option>
+                <option>Regular Wash &mdash; $23.06 + tax</option>
+                <option>Deluxe Wash &mdash; $26.76 + tax</option>
+                <option>Ultimate Wash &mdash; $28.60 + tax</option>
+                <option>Exterior Only &mdash; $14.76 + tax</option>
+                <option>Ultimate Exterior &mdash; $20.30 + tax</option>
+                <option>Exterior Hand Wash &mdash; $30.00</option>
+                <option>Hand Wash w/ Vacuum &amp; Tire Shine &mdash; $50.00</option>
+                <option>Car Detailing &mdash; Contact for Quote</option>
+                <option>Membership Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="vehicle">Vehicle Type</label>
+              <select id="vehicle" required>
+                <option value="">Select type...</option>
+                <option>Sedan / Coupe</option>
+                <option>SUV / Crossover</option>
+                <option>Pick-up Truck</option>
+                <option>Van / Minivan</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date"/>
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <select id="time">
+                <option value="">Select time...</option>
+                <option>8:00 AM</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px;">
+            <label for="message">Message (Optional)</label>
+            <textarea id="message" placeholder="Anything else we should know?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-yellow btn-full btn-submit">
+            Send Request
+          </button>
+        </form>
+
+        <div class="booking-success" id="bookingConfirmation">
+          <div class="success-icon">
+            <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>You're All Set!</h3>
+          <p>We'll get back to you shortly.<br/>See you at 639 Saw Mill River Rd!</p>
+          <button class="btn btn-outline" id="bookAgain">Send Another Message</button>
+        </div>
       </div>
     </div>
   </div>
@@ -447,10 +629,10 @@
   <div class="container">
     <div class="cta-content" data-animate>
       <h2>Ready for That Fresh Car Feeling?</h2>
-      <p>Drive in today or schedule ahead &mdash; your car will thank you.</p>
+      <p>Drive in today or call ahead &mdash; your car will thank you.</p>
       <div class="cta-actions">
-        <a href="#booking" class="btn btn-gold">Schedule a Wash &rarr;</a>
-        <a href="tel:9146932200" class="btn btn-outline-light">Call (914) 693-2200</a>
+        <a href="#booking" class="btn btn-yellow btn-lg">Book a Wash</a>
+        <a href="tel:9146932200" class="btn btn-outline-white btn-lg">Call (914) 693-2200</a>
       </div>
     </div>
   </div>
@@ -461,8 +643,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">Ardsley <span>Car Wash</span></div>
-        <p>Premium car washing and detailing in the heart of Ardsley, NY. Family owned, neighborhood proud.</p>
+        <img src="assets/The Ardsley Carwash Logo.jpg" alt="The Ardsley Carwash" class="logo-img-footer"/>
+        <p>Your neighborhood car wash on Saw Mill River Road. Family owned, community proud, and always ready to make your car shine.</p>
         <div class="footer-social">
           <a href="#" aria-label="Facebook">
             <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -501,24 +683,25 @@
       <div>
         <h4>Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="#services">Services</a></li>
+          <li><a href="#services">Wash Packages</a></li>
           <li><a href="#menu">Full Menu</a></li>
           <li><a href="#membership">Membership</a></li>
-          <li><a href="#booking">Book a Wash</a></li>
-          <li><a href="#story">Our Story</a></li>
+          <li><a href="#story">About Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#booking">Contact</a></li>
         </ul>
       </div>
       <div class="footer-newsletter">
         <h4>Stay in the Loop</h4>
-        <p>Neighborhood news, car care tips, and exclusive offers.</p>
+        <p>Local deals, car care tips, and community updates straight to your inbox.</p>
         <form class="newsletter-form" id="newsletterForm">
-          <input type="email" placeholder="Your email address" required/>
-          <button type="submit" class="btn btn-gold">Subscribe</button>
+          <input type="email" placeholder="Your email" required/>
+          <button type="submit" class="btn btn-yellow">Go</button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2025 Ardsley Car Wash. All rights reserved.</span>
+      <span>&copy; 2025 The Ardsley Carwash. All rights reserved.</span>
       <span>639 Saw Mill River Rd, Ardsley, NY 10502</span>
     </div>
   </div>
