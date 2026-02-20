@@ -27,7 +27,6 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#services">Services</a></li>
-      <li><a href="#menu">Full Menu</a></li>
       <li><a href="#membership">Membership</a></li>
       <li><a href="#story">About Us</a></li>
       <li><a href="#community">Reviews</a></li>
@@ -139,7 +138,6 @@
           <li>Interior dash cleaned</li>
           <li>Windows cleaned</li>
         </ul>
-        <a href="#booking" class="btn btn-outline btn-card">Select Package</a>
       </div>
 
       <!-- DELUXE -->
@@ -155,7 +153,6 @@
           <li>Undercarriage wash</li>
           <li>Tire shine</li>
         </ul>
-        <a href="#booking" class="btn btn-primary btn-card">Select Package</a>
       </div>
 
       <!-- ULTIMATE -->
@@ -171,7 +168,6 @@
           <li>Rubber mat wash</li>
           <li>RAIN-X surface protectant</li>
         </ul>
-        <a href="#booking" class="btn btn-outline btn-card">Select Package</a>
       </div>
     </div>
 
@@ -188,7 +184,6 @@
             <li>Exterior wash</li>
             <li>Towel dry included</li>
           </ul>
-          <a href="#booking" class="btn btn-outline btn-card">Select</a>
         </div>
         <div class="service-card compact">
           <div class="card-icon bg-coral">
@@ -203,7 +198,6 @@
             <li>Hot Shine Carnauba Wax</li>
             <li>RAIN-X surface protectant</li>
           </ul>
-          <a href="#booking" class="btn btn-outline btn-card">Select</a>
         </div>
       </div>
     </div>
@@ -279,12 +273,43 @@
         </div>
         <p class="menu-note">* Prices may vary for SUVs, pick-up trucks, and vans.</p>
 
-        <h3 class="mt-40">Car Detailing</h3>
-        <div class="detailing-block">
-          <strong>Expert Detailing Service</strong>
-          <p>We have the experience and skills necessary to tackle just about every type of job that comes our way. With The Ardsley Carwash, clients know exactly what to expect &mdash; professionalism, efficiency, and exceptional results.</p>
-          <a href="#booking" class="btn btn-primary">Inquire About Detailing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CAR DETAILING ========== -->
+<section id="detailing">
+  <div class="container">
+    <div class="section-header centered" data-animate>
+      <p class="section-label red">Premium Service</p>
+      <h2 class="section-title">Car Detailing</h2>
+      <p class="section-subtitle">More than a wash &mdash; a full restoration. We bring out the best in every vehicle with meticulous attention to detail.</p>
+    </div>
+
+    <div class="detailing-showcase" data-animate>
+      <div class="detailing-images">
+        <div class="detailing-img-main">
+          <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80" alt="Car detailing interior"/>
         </div>
+        <div class="detailing-img-grid">
+          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=400&q=80" alt="Polishing car paint"/>
+          <img src="https://images.unsplash.com/photo-1520340356584-f9166066d675?auto=format&fit=crop&w=400&q=80" alt="Hand washing car"/>
+        </div>
+      </div>
+      <div class="detailing-content">
+        <h3>Expert Detailing Service</h3>
+        <p>We have the experience and skills necessary to tackle just about every type of job that comes our way. With The Ardsley Carwash, clients know exactly what to expect &mdash; professionalism, efficiency, and exceptional results.</p>
+        <ul class="detailing-features">
+          <li>Full interior deep clean &amp; conditioning</li>
+          <li>Paint correction &amp; polish</li>
+          <li>Engine bay cleaning</li>
+          <li>Leather treatment &amp; protection</li>
+          <li>Ceramic coating available</li>
+          <li>Headlight restoration</li>
+        </ul>
+        <p class="detailing-note">Pricing varies by vehicle size and condition. Contact us for a personalized quote.</p>
+        <a href="#booking" class="btn btn-primary btn-lg">Inquire About Detailing</a>
       </div>
     </div>
   </div>
@@ -472,8 +497,8 @@
   <div class="container">
     <div class="section-header centered" data-animate>
       <p class="section-label red">Get In Touch</p>
-      <h2 class="section-title">Book a Wash or Say Hello</h2>
-      <p class="section-subtitle">Drive in, call ahead, or drop us a message. We're here for you.</p>
+      <h2 class="section-title">Book a Detailing or Say Hello</h2>
+      <p class="section-subtitle">Need a detail? Call ahead or drop us a message. For washes, just drive in anytime.</p>
     </div>
 
     <div class="booking-layout" data-animate>
@@ -534,34 +559,6 @@
             <div class="form-group">
               <label for="contact">Phone or Email</label>
               <input type="text" id="contact" placeholder="How we can reach you" required/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="service">Service</label>
-              <select id="service" required>
-                <option value="">Select a package...</option>
-                <option>Regular Wash &mdash; $23.06 + tax</option>
-                <option>Deluxe Wash &mdash; $26.76 + tax</option>
-                <option>Ultimate Wash &mdash; $28.60 + tax</option>
-                <option>Exterior Only &mdash; $14.76 + tax</option>
-                <option>Ultimate Exterior &mdash; $20.30 + tax</option>
-                <option>Exterior Hand Wash &mdash; $30.00</option>
-                <option>Hand Wash w/ Vacuum &amp; Tire Shine &mdash; $50.00</option>
-                <option>Car Detailing &mdash; Contact for Quote</option>
-                <option>Membership Inquiry</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="vehicle">Vehicle Type</label>
-              <select id="vehicle" required>
-                <option value="">Select type...</option>
-                <option>Sedan / Coupe</option>
-                <option>SUV / Crossover</option>
-                <option>Pick-up Truck</option>
-                <option>Van / Minivan</option>
-                <option>Other</option>
-              </select>
             </div>
           </div>
           <div class="form-row">
@@ -667,7 +664,6 @@
         <h4>Quick Links</h4>
         <ul class="footer-links">
           <li><a href="#services">Wash Packages</a></li>
-          <li><a href="#menu">Full Menu</a></li>
           <li><a href="#membership">Membership</a></li>
           <li><a href="#story">About Us</a></li>
           <li><a href="#faq">FAQ</a></li>

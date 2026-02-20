@@ -923,6 +923,102 @@ section { padding: 100px 0; }
 }
 
 
+/* ===== CAR DETAILING ===== */
+.detailing-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.detailing-images {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailing-img-main img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.detailing-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detailing-img-grid img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s ease;
+}
+
+.detailing-img-grid img:hover {
+  transform: scale(1.03);
+}
+
+.detailing-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+.detailing-content > p {
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.detailing-features {
+  margin-bottom: 24px;
+}
+
+.detailing-features li {
+  padding: 8px 0;
+  font-size: 0.92rem;
+  color: var(--slate);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailing-features li::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(238,58,35,0.1);
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23EE3A23' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+}
+
+.detailing-note {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .detailing-showcase { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 480px) {
+  .detailing-img-main img { height: 240px; }
+  .detailing-img-grid img { height: 120px; }
+}
+
+
 /* ===== MEMBERSHIP ===== */
 .section-blue {
   background: var(--blue);
