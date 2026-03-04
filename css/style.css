@@ -405,14 +405,53 @@ ul { list-style: none; }
 
 
 /* ===== HERO ===== */
+/*
+  Image controls — tweak these to adjust the look:
+  --hero-img-opacity   : how visible the photo is (0 = hidden, 1 = full)
+  --hero-overlay-color : the tint color layered over the image
+  --hero-overlay-opacity: how strong the color overlay is
+*/
+:root {
+  --hero-img-opacity: 0.45;
+  --hero-overlay-color: 30, 121, 174;   /* = var(--blue) in RGB */
+  --hero-overlay-opacity: 0.78;
+}
+
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: var(--blue);
+  background: var(--navy-deep);         /* dark fallback if image fails */
   position: relative;
   overflow: hidden;
   padding: 180px 0 80px;
+}
+
+/* Photo layer */
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/banner.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: var(--hero-img-opacity);
+  z-index: 0;
+  /* Uncomment for a subtle blur:
+  filter: blur(2px) brightness(0.85); */
+}
+
+/* Color overlay — blue tint blended over the photo */
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--hero-overlay-color), var(--hero-overlay-opacity)) 0%,
+    rgba(15, 42, 68, 0.72) 50%,
+    rgba(10, 31, 51, 0.88) 100%
+  );
+  z-index: 1;
 }
 
 .hero-bg-pattern {
@@ -422,14 +461,14 @@ ul { list-style: none; }
     radial-gradient(ellipse at 80% 20%, rgba(250,202,42,0.12) 0%, transparent 50%),
     radial-gradient(ellipse at 20% 80%, rgba(238,58,35,0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Floating bubbles */
 .hero-bubbles {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
   pointer-events: none;
 }
@@ -464,7 +503,7 @@ ul { list-style: none; }
 
 .hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   max-width: 720px;
 }
 
@@ -562,6 +601,7 @@ ul { list-style: none; }
   gap: 8px;
   color: rgba(255,255,255,0.3);
   font-size: 0.72rem;
+  z-index: 4;
   letter-spacing: 2px;
   text-transform: uppercase;
   z-index: 2;
