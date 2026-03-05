@@ -1,13 +1,15 @@
 # Backend Setup — The Ardsley Carwash CMS
-**Stack: PocketBase (CMS + API) + fly.io (hosting) + Netlify (frontend)**
+**Stack: PocketBase (CMS + API) + Render (hosting) + Netlify (frontend)**
 
 ---
 
 ## What You Get
 | Feature | How |
 |---|---|
-| Admin dashboard | PocketBase UI at `yourdomain.fly.dev/_/` |
+| Admin dashboard | PocketBase UI at `yourdomain.onrender.com/_/` |
 | Events management | Add/edit/delete events → auto-appears on site |
+| Teams management | Add/edit/delete sponsored teams → auto-appears on site |
+| Partners management | Add/edit/delete community partners → auto-appears on site |
 | Booking records | View all form submissions with status tracking |
 | Membership signups | Full signup records with vehicle info |
 | Newsletter list | Collected email addresses |
@@ -99,6 +101,33 @@ Go to **Collections → New Collection** and create the following:
 | cta_url      | Text   | No       | |
 | tag          | Select | No       | Options: Fundraiser, Festival, School, Sponsorship |
 | status       | Select | Yes      | Options: upcoming, past |
+
+**API Rules:** Set "List" and "View" to public. Create/Update/Delete admin only.
+
+---
+
+### Collection: `teams`
+| Field Name  | Type   | Required | Notes |
+|---|---|---|---|
+| name        | Text   | Yes      | e.g. "Ardsley Little League" |
+| sport       | Text   | No       | e.g. "Little League Baseball" |
+| description | Text   | No       | Short blurb shown on the card |
+| logo        | File   | No       | Team logo image |
+| link        | Text   | No       | External website URL |
+| status      | Select | Yes      | Options: active, inactive |
+
+**API Rules:** Set "List" and "View" to public. Create/Update/Delete admin only.
+
+---
+
+### Collection: `partners`
+| Field Name  | Type   | Required | Notes |
+|---|---|---|---|
+| name        | Text   | Yes      | e.g. "Rivertowns Chamber of Commerce" |
+| description | Text   | No       | Short blurb shown on the card |
+| logo        | File   | No       | Partner logo image |
+| link        | Text   | No       | External website URL |
+| status      | Select | Yes      | Options: active, inactive |
 
 **API Rules:** Set "List" and "View" to public. Create/Update/Delete admin only.
 

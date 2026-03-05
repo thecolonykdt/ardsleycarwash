@@ -17,10 +17,12 @@ const APP_CONFIG = {
     NEWSLETTER: 'newsletter',
     MEMBERSHIPS: 'memberships',
     EVENTS:     'events',
+    TEAMS:      'teams',
+    PARTNERS:   'partners',
   },
 };
 
 // Convenience helper — builds the full records endpoint URL
 function apiUrl(collection) {
-  return `${APP_CONFIG.POCKETBASE_URL}/api/collections/${collection}/ `;
+  return `${APP_CONFIG.POCKETBASE_URL}/api/collections/${collection}/records`;
 }
