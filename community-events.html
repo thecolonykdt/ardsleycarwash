@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Community &amp; Events — The Ardsley Carwash</title>
+<meta name="description" content="The Ardsley Carwash supports local teams, organizations, and community events in Ardsley, Westchester, and the Rivertowns. See who we sponsor and what's coming up."/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://api.fontshare.com/v2/css?f[]=excon@400,500,600,700,800,900&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/community-events.css"/>
+</head>
+<body>
+
+<!-- Mobile overlay for menu -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ========== PROMO BANNER ========== -->
+<div class="promo-banner" id="promoBanner">
+  <div class="container promo-banner-inner">
+    <span class="promo-banner-text">Family Plan Promo: <strong>50% Off</strong> multiple vehicles in your household!</span>
+    <a href="index.html#booking" class="promo-banner-link">Learn More &rarr;</a>
+    <button class="promo-banner-close" id="promoBannerClose" aria-label="Close banner">&times;</button>
+  </div>
+</div>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html">
+      <img src="assets/The Ardsley Carwash Logo.jpg" alt="The Ardsley Carwash" class="logo-img"/>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#membership">Membership</a></li>
+      <li><a href="index.html#story">About Us</a></li>
+      <li><a href="community-events.html" class="nav-active">Community &amp; Events</a></li>
+      <li><a href="index.html#community">Reviews</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="index.html#booking">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:9146932200" class="nav-phone">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (914) 693-2200
+      </a>
+      <a href="index.html#booking" class="btn btn-yellow btn-nav">Book Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="ce-hero">
+  <div class="ce-hero-bg"></div>
+  <div class="ce-hero-overlay"></div>
+  <div class="container">
+    <div class="ce-hero-content">
+      <p class="section-label red ce-hero-label">Ardsley &amp; The Rivertowns</p>
+      <h1>Community &amp; Events</h1>
+      <p class="ce-hero-sub">We're more than a car wash — we're your neighbors. For over 20 years we've shown up for the teams, organizations, and events that make this community great.</p>
+      <div class="ce-hero-links">
+        <a href="#teams" class="btn btn-yellow btn-lg">Sponsored Teams</a>
+        <a href="#events" class="btn btn-outline-white btn-lg">Upcoming Events</a>
+      </div>
+    </div>
+  </div>
+  <div class="ce-hero-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0C360 60 1080 60 1440 0V60H0V0Z" fill="#ffffff"/></svg>
+  </div>
+</section>
+
+<!-- ========== SPONSORED TEAMS ========== -->
+<section id="teams" class="ce-section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <p class="section-label red">On The Field &amp; On The Road</p>
+      <h2 class="section-title">Teams We Sponsor</h2>
+      <p class="section-subtitle">We're proud to back the local athletes, coaches, and families who make Westchester a great place to compete and grow.</p>
+    </div>
+
+    <div class="ce-cards-grid" id="teamsGrid">
+
+      <!-- Ardsley Little League -->
+      <div class="ce-card" data-animate data-delay="0">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/ardsley-little-league.png" alt="Ardsley Little League" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>Ardsley Little League</h3>
+          <p>Supporting young ballplayers in Ardsley since the very beginning. We're proud sponsors of the league that builds teamwork, grit, and community spirit one inning at a time.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://www.ardsleylittleleague.org/" target="_blank" rel="noopener" class="ce-card-link">
+            Visit Website
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Irvington Bulldogs -->
+      <div class="ce-card" data-animate data-delay="80">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/irvington-bulldog.png" alt="Irvington Bulldogs Booster Club" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>Irvington Bulldogs</h3>
+          <p>Backing the Irvington Bulldog Booster Club and the dedicated athletes who wear the blue and white. Every win on the field is a win for our community.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://irvingtonbulldogboosterclub.com/home" target="_blank" rel="noopener" class="ce-card-link">
+            Visit Website
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- DFYLL -->
+      <div class="ce-card" data-animate data-delay="160">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/dfyll.png" alt="DFYLL" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>DFYLL</h3>
+          <p>Supporting Dobbs Ferry Youth Lacrosse League and the passionate players and families who make the program thrive season after season.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://www.dfyll.com/" target="_blank" rel="noopener" class="ce-card-link">
+            Visit Website
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PLT Racing -->
+      <div class="ce-card" data-animate data-delay="240">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/pltracing.jpg" alt="PLT Racing" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>PLT Racing</h3>
+          <p>Proud sponsors of PLT Racing — keeping the competitive spirit alive on the track. Follow their season and see what local passion looks like at full throttle.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://www.instagram.com/pltracing/" target="_blank" rel="noopener" class="ce-card-link">
+            Follow on Instagram
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMMUNITY PARTNERSHIPS ========== -->
+<section id="partners" class="ce-section ce-section-alt">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <p class="section-label blue">Rooted in the Rivertowns</p>
+      <h2 class="section-title">Community Partnerships</h2>
+      <p class="section-subtitle">We work alongside local chambers, nonprofits, and organizations that keep our region connected, vibrant, and growing.</p>
+    </div>
+
+    <div class="ce-cards-grid ce-cards-grid--partners" id="partnersGrid">
+
+      <!-- Rivertowns Chamber -->
+      <div class="ce-card ce-card--partner" data-animate data-delay="0">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/rivertowns-chamber.png" alt="Rivertowns Chamber of Commerce" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>Rivertowns Chamber of Commerce</h3>
+          <p class="ce-card-desc">Connecting the businesses and people of the Rivertowns — Dobbs Ferry, Ardsley, Hastings, Irvington, and Tarrytown. We're proud members and sponsors of their annual Gala.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://rivertownschamber.com/gala-2026/" target="_blank" rel="noopener" class="ce-card-link">
+            Visit Website
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Greenburgh Chamber -->
+      <div class="ce-card ce-card--partner" data-animate data-delay="80">
+        <div class="ce-card-logo-wrap">
+          <img src="assets/partners/greenburgh-chamber.png" alt="Greenburgh Chamber of Commerce" class="ce-card-logo"/>
+        </div>
+        <div class="ce-card-body">
+          <h3>Greenburgh Chamber of Commerce</h3>
+          <p class="ce-card-desc">Supporting local commerce in Greenburgh and the broader Westchester community. Together, we help small businesses and neighborhoods thrive.</p>
+        </div>
+        <div class="ce-card-footer">
+          <a href="https://www.greenburghchamber.com/home" target="_blank" rel="noopener" class="ce-card-link">
+            Visit Website
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== EVENTS ========== -->
+<section id="events" class="ce-section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <p class="section-label yellow">Mark Your Calendar</p>
+      <h2 class="section-title">Events</h2>
+      <p class="section-subtitle">From fundraisers to festivals, we show up where the community gathers. Check back often — we're always adding new events.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="ce-filter-tabs" data-animate>
+      <button class="ce-filter-btn active" data-filter="all">All Events</button>
+      <button class="ce-filter-btn" data-filter="upcoming">Upcoming</button>
+      <button class="ce-filter-btn" data-filter="past">Past</button>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="ce-events-group" id="upcomingEvents">
+      <h3 class="ce-events-group-label">
+        <span class="ce-dot ce-dot--green"></span>
+        Upcoming
+      </h3>
+
+      <div class="ce-events-list">
+
+        <article class="ce-event-card" data-status="upcoming" data-animate data-delay="0">
+          <div class="ce-event-date">
+            <span class="ce-event-month">Jun</span>
+            <span class="ce-event-day">14</span>
+            <span class="ce-event-year">2025</span>
+          </div>
+          <div class="ce-event-body">
+            <div class="ce-event-meta">
+              <span class="ce-tag ce-tag--fundraiser">Fundraiser</span>
+              <span class="ce-event-time">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6:00 PM – 10:00 PM
+              </span>
+              <span class="ce-event-loc">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Rivertowns Square, Dobbs Ferry, NY
+              </span>
+            </div>
+            <h4 class="ce-event-title">Rivertowns Chamber Annual Gala 2025</h4>
+            <p class="ce-event-desc">Join us for an evening celebrating the businesses and people of the Rivertowns. The Ardsley Carwash is proud to be a sponsor of this annual celebration of local commerce and community.</p>
+          </div>
+          <div class="ce-event-cta">
+            <a href="https://rivertownschamber.com/gala-2026/" target="_blank" rel="noopener" class="btn btn-primary">
+              Learn More
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="ce-event-card" data-status="upcoming" data-animate data-delay="80">
+          <div class="ce-event-date">
+            <span class="ce-event-month">Jul</span>
+            <span class="ce-event-day">4</span>
+            <span class="ce-event-year">2025</span>
+          </div>
+          <div class="ce-event-body">
+            <div class="ce-event-meta">
+              <span class="ce-tag ce-tag--festival">Festival</span>
+              <span class="ce-event-time">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                All Day
+              </span>
+              <span class="ce-event-loc">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Ardsley, NY
+              </span>
+            </div>
+            <h4 class="ce-event-title">Ardsley Independence Day Celebration</h4>
+            <p class="ce-event-desc">Celebrate the Fourth of July with your Ardsley neighbors. Come find us at the festivities — free wash coupons for the community while supplies last!</p>
+          </div>
+          <div class="ce-event-cta">
+            <a href="index.html#booking" class="btn btn-outline">Say Hello</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Past Events -->
+    <div class="ce-events-group ce-events-group--past" id="pastEvents">
+      <h3 class="ce-events-group-label">
+        <span class="ce-dot ce-dot--gray"></span>
+        Past Events
+      </h3>
+
+      <div class="ce-events-list">
+
+        <article class="ce-event-card ce-event-card--past" data-status="past" data-animate data-delay="0">
+          <div class="ce-event-date ce-event-date--past">
+            <span class="ce-event-month">Apr</span>
+            <span class="ce-event-day">12</span>
+            <span class="ce-event-year">2025</span>
+          </div>
+          <div class="ce-event-body">
+            <div class="ce-event-meta">
+              <span class="ce-tag ce-tag--sponsorship">Sponsorship</span>
+              <span class="ce-event-time">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                9:00 AM – 12:00 PM
+              </span>
+              <span class="ce-event-loc">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Ardsley High School, Ardsley, NY
+              </span>
+            </div>
+            <h4 class="ce-event-title">Ardsley Little League Opening Day 2025</h4>
+            <p class="ce-event-desc">We were proud to sponsor Opening Day for Ardsley Little League. A great morning cheering on the next generation of players with families from across the community.</p>
+          </div>
+          <div class="ce-event-cta">
+            <span class="ce-event-past-badge">Completed</span>
+          </div>
+        </article>
+
+        <article class="ce-event-card ce-event-card--past" data-status="past" data-animate data-delay="80">
+          <div class="ce-event-date ce-event-date--past">
+            <span class="ce-event-month">Mar</span>
+            <span class="ce-event-day">8</span>
+            <span class="ce-event-year">2025</span>
+          </div>
+          <div class="ce-event-body">
+            <div class="ce-event-meta">
+              <span class="ce-tag ce-tag--school">School</span>
+              <span class="ce-event-time">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                7:00 PM – 9:00 PM
+              </span>
+              <span class="ce-event-loc">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Ardsley Middle School, Ardsley, NY
+              </span>
+            </div>
+            <h4 class="ce-event-title">Ardsley PTA Fundraiser Night</h4>
+            <p class="ce-event-desc">We donated wash packages to the Ardsley PTA fundraiser auction, supporting local school programs and the families who make them possible.</p>
+          </div>
+          <div class="ce-event-cta">
+            <span class="ce-event-past-badge">Completed</span>
+          </div>
+        </article>
+
+        <article class="ce-event-card ce-event-card--past" data-status="past" data-animate data-delay="160">
+          <div class="ce-event-date ce-event-date--past">
+            <span class="ce-event-month">Nov</span>
+            <span class="ce-event-day">24</span>
+            <span class="ce-event-year">2024</span>
+          </div>
+          <div class="ce-event-body">
+            <div class="ce-event-meta">
+              <span class="ce-tag ce-tag--fundraiser">Fundraiser</span>
+              <span class="ce-event-time">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                All Day
+              </span>
+              <span class="ce-event-loc">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                639 Saw Mill River Rd, Ardsley, NY
+              </span>
+            </div>
+            <h4 class="ce-event-title">Thanksgiving Wash &amp; Give Drive</h4>
+            <p class="ce-event-desc">For every wash purchased on Thanksgiving eve, we donated a portion of proceeds to the local food bank. Thank you to everyone who showed up — we raised over $800 for neighbors in need.</p>
+          </div>
+          <div class="ce-event-cta">
+            <span class="ce-event-past-badge">Completed</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== PARTNER WITH US ========== -->
+<section id="partner-cta" class="ce-partner-cta">
+  <div class="ce-partner-cta-bg"></div>
+  <div class="container">
+    <div class="ce-partner-inner" data-animate>
+      <div class="ce-partner-icon">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="ce-partner-text">
+        <h2>Want to Partner With Us?</h2>
+        <p>We love connecting with local teams, schools, nonprofits, and businesses that share our commitment to community. Whether it's a sponsorship, a fundraiser wash event, or just a conversation — we want to hear from you.</p>
+      </div>
+      <div class="ce-partner-actions">
+        <a href="index.html#booking" class="btn btn-yellow btn-lg">Get in Touch</a>
+        <a href="mailto:ardsleycarwashny@gmail.com" class="btn btn-outline-white btn-lg">Email Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/The Ardsley Carwash Logo.jpg" alt="The Ardsley Carwash" class="logo-img-footer"/>
+        <p>Your neighborhood car wash on Saw Mill River Road. Community proud and always ready to make your car shine.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Google">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="https://maps.google.com/?q=639+Saw+Mill+River+Rd+Ardsley+NY+10502" target="_blank">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              639 Saw Mill River Rd<br/>Ardsley, NY 10502
+            </a>
+          </li>
+          <li>
+            <a href="tel:9146932200">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (914) 693-2200
+            </a>
+          </li>
+          <li>
+            <a href="mailto:ardsleycarwashny@gmail.com">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              ardsleycarwashny@gmail.com
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#services">Wash Packages</a></li>
+          <li><a href="index.html#membership">Membership</a></li>
+          <li><a href="index.html#story">About Us</a></li>
+          <li><a href="community-events.html">Community &amp; Events</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#booking">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the Loop</h4>
+        <p>Local deals, car care tips, and community updates straight to your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required/>
+          <button type="submit" class="btn btn-yellow">Go</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 The Ardsley Carwash. All rights reserved.</span>
+      <span>639 Saw Mill River Rd, Ardsley, NY 10502</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== BACK TO TOP ========== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="js/main.js"></script>
+<script src="js/community-events.js"></script>
+</body>
+</html>
