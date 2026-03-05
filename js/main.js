@@ -89,8 +89,40 @@ document.addEventListener('DOMContentLoaded', () => {
       dateInput.setAttribute('min', today);
     }
 
-    bookingForm.addEventListener('submit', (e) => {
+    bookingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = bookingForm.querySelector('[type="submit"]');
+      const originalText = submitBtn.textContent;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      const payload = {
+        name:           document.getElementById('name').value.trim(),
+        contact:        document.getElementById('contact').value.trim(),
+        preferred_date: document.getElementById('date').value || null,
+        preferred_time: document.getElementById('time').value || null,
+        message:        (document.getElementById('message').value || '').trim(),
+        status:         'new',
+      };
+
+      if (APP_CONFIG.POCKETBASE_URL) {
+        try {
+          const res = await fetch(apiUrl(APP_CONFIG.COLLECTIONS.BOOKINGS), {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        } catch (err) {
+          console.error('Booking submit error:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          alert('Something went wrong. Please call us at (914) 693-2200 or email ardsleycarwashny@gmail.com.');
+          return;
+        }
+      }
+
       bookingForm.style.display = 'none';
       confirmation.classList.add('visible');
       confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -99,6 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (bookAgain) {
     bookAgain.addEventListener('click', () => {
+      const submitBtn = bookingForm.querySelector('[type="submit"]');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Request';
       bookingForm.reset();
       bookingForm.style.display = '';
       confirmation.classList.remove('visible');
@@ -109,11 +144,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== NEWSLETTER FORM =====
   const newsletterForm = document.getElementById('newsletterForm');
   if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+    newsletterForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const input = newsletterForm.querySelector('input');
       const btn = newsletterForm.querySelector('button');
       const originalText = btn.textContent;
+      const email = input.value.trim();
+
+      btn.disabled = true;
+      btn.textContent = '…';
+
+      if (APP_CONFIG.POCKETBASE_URL) {
+        try {
+          const res = await fetch(apiUrl(APP_CONFIG.COLLECTIONS.NEWSLETTER), {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ email }),
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        } catch (err) {
+          console.error('Newsletter submit error:', err);
+          btn.disabled = false;
+          btn.textContent = originalText;
+          return;
+        }
+      }
+
       btn.textContent = 'Done!';
       btn.style.background = '#2ecc71';
       btn.style.color = '#fff';
@@ -122,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = originalText;
         btn.style.background = '';
         btn.style.color = '';
+        btn.disabled = false;
       }, 3000);
     });
   }

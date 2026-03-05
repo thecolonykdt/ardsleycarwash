@@ -70,10 +70,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const backLink = document.getElementById('backLink');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Hide form, show success
+      const submitBtn = form.querySelector('[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      const areaCode   = document.getElementById('areaCode').value.trim();
+      const phoneNum   = document.getElementById('phoneNumber').value.trim();
+      const phone      = areaCode && phoneNum ? `${areaCode}-${phoneNum}` : '';
+
+      const payload = {
+        first_name:    document.getElementById('firstName').value.trim(),
+        last_name:     document.getElementById('lastName').value.trim(),
+        email:         document.getElementById('email').value.trim(),
+        phone:         phone,
+        address_line1: document.getElementById('street1').value.trim(),
+        address_line2: (document.getElementById('street2').value || '').trim(),
+        city:          document.getElementById('city').value.trim(),
+        state:         document.getElementById('state').value.trim(),
+        zip:           document.getElementById('zip').value.trim(),
+        vehicle_year:  document.getElementById('year').value,
+        vehicle_make:  document.getElementById('make').value,
+        vehicle_model: document.getElementById('model').value.trim(),
+        plan:          planKey || 'regular',
+        status:        'pending',
+      };
+
+      if (APP_CONFIG.POCKETBASE_URL) {
+        try {
+          const res = await fetch(apiUrl(APP_CONFIG.COLLECTIONS.MEMBERSHIPS), {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        } catch (err) {
+          console.error('Membership submit error:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          alert('Something went wrong. Please call us at (914) 693-2200.');
+          return;
+        }
+      }
+
       form.style.display = 'none';
       if (backLink) backLink.style.display = 'none';
       successEl.classList.add('visible');
