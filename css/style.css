@@ -628,30 +628,19 @@ ul { list-style: none; }
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.hp-eyebrow {
-  text-align: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gray);
-  margin-bottom: 0;
-  padding-bottom: 6px;
-}
-
 /* Scrolling track */
 .hp-track {
   overflow: hidden;
-  height: 92px;
+  height: 90px;
   position: relative;
 }
 
-/* Animated scene: car + rope + logos */
+/* Animated scene: car + flag + logos */
 .hp-scene {
   position: absolute;
   display: flex;
   align-items: flex-end;
-  bottom: 10px;
+  bottom: 8px;
   left: 0;
   animation: hp-drive 24s linear infinite;
 }
@@ -670,38 +659,57 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-/* Horizontal rope — border-top is the rope line */
-.hp-rope {
-  display: flex;
-  align-items: flex-start;
-  border-top: 2px solid #2d3748;
-  padding: 0 28px 0 0;
-  margin-bottom: 13px;   /* lifts rope to align with car body */
-  gap: 4px;
+/* Tow bar connecting car to flag */
+.hp-tow {
+  width: 20px;
+  height: 2px;
+  background: #0f2a44;
+  margin-bottom: 27px; /* aligns with tow hook on car (28px from bottom) */
+  flex-shrink: 0;
 }
 
-/* Individual hanging tag */
-.hp-tag {
+/* Flag / pennant behind the car */
+.hp-banner {
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: 8px;  /* vertically centers flag at tow-hook height */
+  background: #0f2a44;
+  color: #FACA2A;
+  padding: 8px 30px 8px 12px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 50%, 100% 100%, 0 100%);
+  animation: flag-wave 2.2s ease-in-out infinite;
+}
+
+.hp-banner span {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  white-space: nowrap;
+  font-family: 'Excon', sans-serif;
+}
+
+@keyframes flag-wave {
+  0%   { clip-path: polygon(0 0,   100% 0,   calc(100% - 18px) 50%, 100% 100%,  0 100%); }
+  33%  { clip-path: polygon(0 3px, 100% 0,   calc(100% - 14px) 50%, 100% 97%,   0 97%); }
+  66%  { clip-path: polygon(0 0,   100% 3px, calc(100% - 22px) 50%, 100% 100%,  0 97%); }
+  100% { clip-path: polygon(0 0,   100% 0,   calc(100% - 18px) 50%, 100% 100%,  0 100%); }
+}
+
+/* Partner logo badges in a row */
+.hp-logos {
+  display: flex;
   align-items: center;
-  margin: 0 10px;
-  transform-origin: top center;
-  animation: hp-sway 2.1s ease-in-out infinite;
-  animation-delay: var(--d, 0s);
-}
-
-@keyframes hp-sway {
-  0%, 100% { transform: rotate(-7deg); }
-  50%       { transform: rotate(7deg);  }
-}
-
-/* Hanging string */
-.hp-string {
-  width: 1.5px;
-  height: 16px;
-  background: #2d3748;
-  opacity: 0.4;
+  gap: 10px;
+  padding-left: 16px;
+  padding-right: 20px;
+  align-self: center;
+  flex-shrink: 0;
 }
 
 /* Badge card */
@@ -735,12 +743,12 @@ ul { list-style: none; }
 @media (max-width: 640px) {
   .hp-track { height: 80px; }
   .hp-car svg { width: 110px; height: 53px; }
-  .hp-string { height: 12px; }
+  .hp-banner { padding: 6px 24px 6px 9px; }
+  .hp-banner span { font-size: 0.52rem; letter-spacing: 1.5px; }
   .hp-badge { padding: 4px 8px 4px 5px; gap: 6px; }
   .hp-badge span { font-size: 0.64rem; }
-  .hp-icon { width: 32px; height: 32px; }
-  .hp-rope { margin-bottom: 10px; }
-  .hp-tag { margin: 0 7px; }
+  .hp-icon { width: 30px; height: 30px; }
+  .hp-logos { gap: 7px; padding-left: 10px; }
 }
 
 
