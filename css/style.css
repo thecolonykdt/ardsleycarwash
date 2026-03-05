@@ -412,9 +412,9 @@ ul { list-style: none; }
   --hero-overlay-opacity: how strong the color overlay is
 */
 :root {
-  --hero-img-opacity: 0.45;
+  --hero-img-opacity: 0.72;
   --hero-overlay-color: 30, 121, 174;   /* = var(--blue) in RGB */
-  --hero-overlay-opacity: 0.78;
+  --hero-overlay-opacity: 0.45;
 }
 
 .hero {
@@ -450,8 +450,8 @@ ul { list-style: none; }
   background: linear-gradient(
     135deg,
     rgba(var(--hero-overlay-color), var(--hero-overlay-opacity)) 0%,
-    rgba(15, 42, 68, 0.72) 50%,
-    rgba(10, 31, 51, 0.88) 100%
+    rgba(15, 42, 68, 0.45) 50%,
+    rgba(10, 31, 51, 0.65) 100%
   );
   z-index: 1;
 }
