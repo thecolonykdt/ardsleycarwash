@@ -418,10 +418,8 @@ ul { list-style: none; }
 }
 
 .hero {
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr;
   background: var(--navy-deep);
   position: relative;
   overflow: hidden;
@@ -430,16 +428,15 @@ ul { list-style: none; }
 
 /* Photo layer */
 .hero-bg-image {
-  position: absolute;
-  top: 116px; left: 0; right: 0; bottom: 0;
-  background-image: url('../assets/banner.png');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  grid-row: 1;
+  grid-column: 1;
+  align-self: start;
+  margin-top: 116px;
+  width: 100%;
+  height: auto;
+  display: block;
   opacity: var(--hero-img-opacity);
   z-index: 0;
-  /* Uncomment for a subtle blur:
-  filter: blur(2px) brightness(0.85); */
 }
 
 /* Color overlay — blue tint blended over the photo */
@@ -503,6 +500,9 @@ ul { list-style: none; }
 .bubble:nth-child(15) { left: 62%; width: 10px; height: 10px; animation-duration: 8s; animation-delay: 5.5s; }
 
 .hero .container {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: start;
   position: relative;
   z-index: 4;
   max-width: 960px;
@@ -511,7 +511,7 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   padding-top: 180px;           /* clear fixed navbar + promo banner */
-  padding-bottom: 60px;
+  padding-bottom: 130px;        /* clear partners strip at bottom */
 }
 
 .hero-content {
@@ -633,6 +633,9 @@ ul { list-style: none; }
 
 /* ===== HERO PARTNERS STRIP ===== */
 .hero-partners {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: end;
   position: relative;
   z-index: 5;
   background: #eef2f7;
@@ -1930,7 +1933,7 @@ section { padding: 100px 0; }
   top: 0;
 }
 .promo-banner.hidden ~ .hero .hero-bg-image {
-  top: 76px;
+  margin-top: 76px;
 }
 
 @media (max-width: 640px) {
@@ -1948,10 +1951,10 @@ section { padding: 100px 0; }
     top: 0;
   }
   .hero-bg-image {
-    top: 112px;
+    margin-top: 112px;
   }
   .promo-banner.hidden ~ .hero .hero-bg-image {
-    top: 76px;
+    margin-top: 76px;
   }
 }
 
