@@ -2775,6 +2775,13 @@ section { padding: 100px 0; }
   .promo-banner-close {
     font-size: 18px;
   }
+  .logo-img {
+    height: 40px;
+  }
+  .navbar .container {
+    height: 52px;
+    padding: 0 12px;
+  }
   .navbar {
     top: 32px;
   }
