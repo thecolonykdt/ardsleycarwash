@@ -1421,116 +1421,244 @@ section { padding: 100px 0; }
 
 
 /* ===== MEMBERSHIP ===== */
-.section-blue {
-  background: var(--blue);
-  color: #fff;
+/* ===== MEMBERSHIP — CARTOON STYLE ===== */
+.membership-cartoon-section {
+  background: linear-gradient(160deg, #81D4FA 0%, #29B6F6 40%, #0288D1 100%);
+  padding: 52px 0 44px;
   position: relative;
   overflow: hidden;
 }
 
-.section-blue::before {
-  content: '';
+/* floating bubbles */
+.mc-bubbles { position: absolute; inset: 0; pointer-events: none; }
+.mc-bubble {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 0% 0%, rgba(250,202,42,0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(238,58,35,0.08) 0%, transparent 50%);
-}
-
-.section-blue .container { position: relative; z-index: 2; }
-.section-blue .section-label { color: var(--yellow); }
-.section-blue .section-label::before { background: var(--yellow); }
-.section-blue .section-title { color: #fff; }
-.section-blue .section-subtitle { color: rgba(255,255,255,0.6); }
-
-.membership-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px; /* more breathing room between cards */
-}
-
-.membership-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius-xl);
-  padding: 40px 32px;
-  backdrop-filter: blur(8px);
-  text-align: center;
-  transition: all var(--transition);
-}
-
-.membership-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(250,202,42,0.3);
-}
-
-.membership-card.featured {
-  border-color: var(--yellow);
-  background: rgba(250,202,42,0.08);
-  box-shadow: 0 0 0 1px var(--yellow);
-  transform: scale(1.02);
-}
-
-.membership-card.featured:hover {
-  transform: scale(1.02) translateY(-8px);
-}
-
-.membership-icon {
-  width: 64px; height: 64px;
   border-radius: 50%;
-  margin: 0 auto 20px;
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.4);
+  animation: mc-float 6s ease-in-out infinite alternate;
+}
+.mc-bubble:nth-child(2) { animation-delay: -1.5s; }
+.mc-bubble:nth-child(3) { animation-delay: -3s; }
+.mc-bubble:nth-child(4) { animation-delay: -4s; }
+.mc-bubble:nth-child(5) { animation-delay: -2s; }
+.mc-bubble:nth-child(6) { animation-delay: -5s; }
+@keyframes mc-float {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(-14px) scale(1.06); }
+}
+
+.mc-container { position: relative; z-index: 2; }
+
+/* Header */
+.mc-header { text-align: center; margin-bottom: 32px; }
+.mc-title {
+  font-family: 'Fredoka One', 'Excon', cursive;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.0;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 #01579B,
+    -2px -2px 0 #01579B,
+    2px -2px 0 #01579B,
+    -2px 2px 0 #01579B,
+    0 4px 0 #01579B;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.mc-tagline {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(0.78rem, 1.8vw, 0.95rem);
+  color: #fff;
+  text-shadow: 1px 1px 0 #01579B;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Grid */
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.mc-card {
+  border-radius: 24px;
+  padding: 24px 24px 20px;
   display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mc-card:hover { transform: translateY(-6px); }
+
+.mc-card--regular {
+  background: #B3E5FC;
+  border: 4px solid #0288D1;
+  box-shadow: 0 7px 0 #01579B, 0 10px 20px rgba(1,87,155,0.22);
+}
+.mc-card--ultimate {
+  background: #0D2B6E;
+  border: 4px solid #1565C0;
+  box-shadow: 0 7px 0 #0a1f52, 0 10px 20px rgba(10,31,82,0.4);
+}
+
+/* Card titles */
+.mc-card-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.mc-card-title--regular {
+  color: #0288D1;
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.6);
+}
+.mc-card-title--ultimate {
+  color: #64B5F6;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+/* Includes line */
+.mc-includes {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.9rem;
+  color: #90CAF9;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* Feature lists */
+.mc-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  width: 100%;
+}
+.mc-features li {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.98rem;
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.mc-features li::before {
+  content: '+';
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.mc-card--regular .mc-features li { color: #01579B; }
+.mc-card--regular .mc-features li::before { color: #0288D1; }
+.mc-card--ultimate .mc-features li { color: #E3F2FD; }
+.mc-card--ultimate .mc-features li::before { color: #64B5F6; }
+
+/* Footer row: mascot left, price bubble right */
+.mc-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.mc-mascot { flex-shrink: 0; }
+.mc-mascot--vacuum { width: 80px; height: 80px; }
+.mc-mascot--tire   { width: 74px; height: 74px; }
+
+/* Price bubble */
+.mc-price-bubble {
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.membership-icon.red-bg { background: rgba(238,58,35,0.15); color: var(--red); }
-.membership-icon.yellow-bg { background: rgba(250,202,42,0.2); color: var(--yellow); }
-.membership-icon.blue-bg { background: rgba(255,255,255,0.1); color: #fff; }
-
-.membership-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
-.membership-price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--yellow);
-  margin-bottom: 4px;
-  font-family: 'Excon', sans-serif;
-}
-.membership-price small {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-  font-weight: 400;
-  font-family: 'Work Sans', sans-serif;
-}
-.membership-tagline {
-  color: rgba(255,255,255,0.5);
-  font-size: 0.88rem;
-  margin-bottom: 28px;
-}
-
-.membership-card ul { text-align: left; margin-bottom: 28px; }
-.membership-card li {
-  padding: 8px 0;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.membership-card li::before {
-  content: '';
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  background: rgba(250,202,42,0.2);
+  text-align: center;
+  line-height: 1.15;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
   flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%23FACA2A' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 8px;
 }
+.mc-price-bubble--light {
+  background: #fff;
+  border: 3px solid #0288D1;
+}
+.mc-price-bubble--dark {
+  background: #1565C0;
+  border: 3px solid #64B5F6;
+}
+.mc-price {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: #01579B;
+  display: block;
+  line-height: 1;
+}
+.mc-price-bubble--dark .mc-price { color: #fff; }
+.mc-price-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #01579B;
+  display: block;
+}
+.mc-price-bubble--dark .mc-price-label { color: #90CAF9; }
+.mc-price-tax {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #0277BD;
+  display: block;
+}
+.mc-price-bubble--dark .mc-price-tax { color: #64B5F6; }
 
-@media (max-width: 900px) { .membership-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+/* CTA buttons */
+.mc-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 14px;
+  padding: 12px 0;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.mc-btn:hover { transform: translateY(-3px); }
+
+.mc-btn--regular {
+  background: #0288D1;
+  color: #fff;
+  box-shadow: 0 5px 0 #01579B;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+}
+.mc-btn--regular:hover { box-shadow: 0 8px 0 #01579B; }
+
+.mc-btn--ultimate {
+  background: #FDD835;
+  color: #1a237e;
+  box-shadow: 0 5px 0 #F9A825;
+}
+.mc-btn--ultimate:hover { box-shadow: 0 8px 0 #F9A825; }
+
+@media (max-width: 900px) {
+  .mc-grid { grid-template-columns: 1fr; max-width: 400px; }
+}
 
 
 /* ===== ABOUT / STORY ===== */
