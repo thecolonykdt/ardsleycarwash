@@ -795,41 +795,137 @@
 </section>
 
 <!-- ========== ABOUT US / STORY ========== -->
-<section id="story">
-  <div class="container">
-    <div class="story-grid">
-      <div class="story-image" data-animate="fade-right">
-        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80" alt="The Ardsley Carwash"/>
-        <div class="story-image-accent"></div>
+<section id="story" class="story-section">
+
+  <!-- ── Dark illustrated community banner ── -->
+  <div class="story-banner">
+
+    <!-- Scattered floating bubbles -->
+    <div class="sb-bubble" style="width:9px;height:9px;top:16%;left:11%;animation-delay:0s"></div>
+    <div class="sb-bubble" style="width:5px;height:5px;top:55%;left:7%;animation-delay:1.2s"></div>
+    <div class="sb-bubble" style="width:13px;height:13px;top:72%;left:22%;animation-delay:2.4s"></div>
+    <div class="sb-bubble" style="width:6px;height:6px;top:30%;left:32%;animation-delay:0.7s"></div>
+    <div class="sb-bubble" style="width:10px;height:10px;top:20%;right:13%;animation-delay:1.8s"></div>
+    <div class="sb-bubble" style="width:7px;height:7px;top:62%;right:8%;animation-delay:0.3s"></div>
+    <div class="sb-bubble" style="width:15px;height:15px;top:42%;right:26%;animation-delay:3s"></div>
+    <div class="sb-bubble" style="width:5px;height:5px;top:78%;right:36%;animation-delay:1.5s"></div>
+    <div class="sb-bubble" style="width:8px;height:8px;top:10%;left:48%;animation-delay:2s"></div>
+
+    <!-- Left neighborhood scene -->
+    <div class="story-neighborhood story-neighborhood--left">
+      <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMax meet">
+        <!-- Ground strip -->
+        <rect x="0" y="152" width="280" height="28" fill="#0d2540"/>
+        <!-- Far-left tree -->
+        <rect x="14" y="110" width="6" height="42" rx="2" fill="#0b2518"/>
+        <ellipse cx="17" cy="100" rx="18" ry="16" fill="#1a4d2e"/>
+        <ellipse cx="17" cy="98" rx="11" ry="9" fill="#1e5c36" opacity="0.65"/>
+        <!-- Big house -->
+        <rect x="46" y="78" width="80" height="74" rx="3" fill="#122840"/>
+        <polygon points="46,78 86,48 126,78" fill="#163250"/>
+        <line x1="86" y1="48" x2="86" y2="78" stroke="#1E79AE" stroke-width="1.5" opacity="0.45"/>
+        <!-- big house windows -->
+        <rect x="56" y="90" width="18" height="15" rx="2" fill="#FACA2A" opacity="0.75"/>
+        <rect x="98" y="90" width="18" height="15" rx="2" fill="#FACA2A" opacity="0.55"/>
+        <!-- door -->
+        <rect x="74" y="114" width="16" height="38" rx="2" fill="#1E79AE" opacity="0.45"/>
+        <!-- Mid tree -->
+        <rect x="142" y="118" width="5" height="34" rx="2" fill="#0b2518"/>
+        <ellipse cx="144" cy="110" rx="14" ry="12" fill="#1a4d2e"/>
+        <ellipse cx="144" cy="108" rx="9" ry="7" fill="#1e5c36" opacity="0.6"/>
+        <!-- Small house right -->
+        <rect x="162" y="104" width="54" height="48" rx="3" fill="#163250"/>
+        <polygon points="162,104 189,82 216,104" fill="#1a3a60"/>
+        <rect x="171" y="114" width="12" height="11" rx="2" fill="#4a90d9" opacity="0.6"/>
+        <rect x="193" y="114" width="12" height="11" rx="2" fill="#FACA2A" opacity="0.65"/>
+        <!-- Far-right tiny house -->
+        <rect x="228" y="122" width="36" height="30" rx="2" fill="#122840"/>
+        <polygon points="228,122 246,108 264,122" fill="#163250"/>
+        <rect x="237" y="130" width="9" height="8" rx="1" fill="#FACA2A" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Right neighborhood scene (mirrored layout) -->
+    <div class="story-neighborhood story-neighborhood--right">
+      <svg viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMax meet">
+        <!-- Ground strip -->
+        <rect x="0" y="152" width="280" height="28" fill="#0d2540"/>
+        <!-- Far-left tiny house -->
+        <rect x="16" y="122" width="36" height="30" rx="2" fill="#122840"/>
+        <polygon points="16,122 34,108 52,122" fill="#163250"/>
+        <rect x="25" y="130" width="9" height="8" rx="1" fill="#FACA2A" opacity="0.5"/>
+        <!-- Small house left -->
+        <rect x="64" y="104" width="54" height="48" rx="3" fill="#163250"/>
+        <polygon points="64,104 91,82 118,104" fill="#1a3a60"/>
+        <rect x="73" y="114" width="12" height="11" rx="2" fill="#FACA2A" opacity="0.65"/>
+        <rect x="95" y="114" width="12" height="11" rx="2" fill="#4a90d9" opacity="0.6"/>
+        <!-- Mid tree -->
+        <rect x="131" y="118" width="5" height="34" rx="2" fill="#0b2518"/>
+        <ellipse cx="133" cy="110" rx="14" ry="12" fill="#1a4d2e"/>
+        <ellipse cx="133" cy="108" rx="9" ry="7" fill="#1e5c36" opacity="0.6"/>
+        <!-- Big house -->
+        <rect x="154" y="78" width="80" height="74" rx="3" fill="#122840"/>
+        <polygon points="154,78 194,48 234,78" fill="#163250"/>
+        <line x1="194" y1="48" x2="194" y2="78" stroke="#1E79AE" stroke-width="1.5" opacity="0.45"/>
+        <rect x="164" y="90" width="18" height="15" rx="2" fill="#FACA2A" opacity="0.55"/>
+        <rect x="206" y="90" width="18" height="15" rx="2" fill="#FACA2A" opacity="0.75"/>
+        <rect x="182" y="114" width="16" height="38" rx="2" fill="#1E79AE" opacity="0.45"/>
+        <!-- Far-right tree -->
+        <rect x="257" y="110" width="6" height="42" rx="2" fill="#0b2518"/>
+        <ellipse cx="260" cy="100" rx="18" ry="16" fill="#1a4d2e"/>
+        <ellipse cx="260" cy="98" rx="11" ry="9" fill="#1e5c36" opacity="0.65"/>
+      </svg>
+    </div>
+
+    <!-- Centre content -->
+    <div class="story-banner-center">
+      <div class="sb-heart-icon">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="22" fill="#1E79AE"/>
+          <path d="M22 31 Q11 23 11 17 Q11 12 16 12 Q19 12 22 16 Q25 12 28 12 Q33 12 33 17 Q33 23 22 31Z" fill="#FACA2A"/>
+          <circle cx="22" cy="31" r="2.5" fill="#FACA2A"/>
+        </svg>
       </div>
-      <div class="story-content" data-animate="fade-left">
-        <p class="section-label red">About Us</p>
-        <h2>More Than Just a Wash.</h2>
-        <p>We're not a franchise. We're your neighbors. The Ardsley Carwash has been on Saw Mill River Road for over 20 years &mdash; washing cars, chatting with regulars, and making sure every vehicle leaves looking better than it came in.</p>
-        <p>We care about the community and we care about your time. If we can save you 10 minutes and make your day easier, that's a win for us.</p>
-
-        <div class="story-stats">
-          <div class="stat">
-            <div class="stat-number" data-count="20">0</div>
-            <div class="stat-label">Years Local</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number" data-count="50000">0</div>
-            <div class="stat-label">Cars Washed</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number" data-count="4.9">0</div>
-            <div class="stat-label">Google Rating</div>
-          </div>
-        </div>
-
-        <div class="story-contact">
-          <a href="tel:9146932200" class="btn btn-blue">Call (914) 693-2200</a>
-          <a href="https://maps.google.com/?q=639+Saw+Mill+River+Rd+Ardsley+NY+10502" target="_blank" class="btn btn-outline">Get Directions</a>
-        </div>
+      <p class="sb-label">About Us</p>
+      <h2 class="sb-heading">More Than Just a Car Wash.</h2>
+      <p class="sb-body">We&rsquo;re not a franchise &mdash; we&rsquo;re your neighbors. Since 2003, the Ardsley Car Wash has been a fixture on Saw Mill River Road, built on a simple belief: treat every car like it&rsquo;s your own and treat every customer like family.</p>
+      <p class="sb-body">Over 20 years of early mornings, rainy days, and regulars who&rsquo;ve become friends. We&rsquo;re proud to be part of this community &mdash; sponsoring local schools, supporting town events, and showing up for Ardsley the same way Ardsley has always shown up for us.</p>
+      <div class="sb-stats">
+        <div class="sb-stat"><span class="sb-stat-num">20+</span><span class="sb-stat-lbl">Years Local</span></div>
+        <div class="sb-stat-divider"></div>
+        <div class="sb-stat"><span class="sb-stat-num">50K+</span><span class="sb-stat-lbl">Cars Washed</span></div>
+        <div class="sb-stat-divider"></div>
+        <div class="sb-stat"><span class="sb-stat-num">4.9★</span><span class="sb-stat-lbl">Google Rating</span></div>
+      </div>
+      <div class="sb-attribution">
+        <span class="sb-attr-rule"></span>
+        <span class="sb-attr-text">THE ARDSLEY CARWASH &mdash; EST. 2003</span>
+        <span class="sb-attr-rule"></span>
+      </div>
+      <div class="sb-cta-row">
+        <a href="tel:9146932200" class="btn btn-blue">Call (914) 693-2200</a>
+        <a href="https://maps.google.com/?q=639+Saw+Mill+River+Rd+Ardsley+NY+10502" target="_blank" class="sb-btn-outline">Get Directions</a>
+        <a href="community-events.html" class="sb-btn-outline-red">Community &amp; Events</a>
       </div>
     </div>
-  </div>
+
+    <!-- Animated car driving across -->
+    <div class="story-car-track">
+      <div class="story-car">
+        <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="90" height="40">
+          <rect x="5" y="18" width="80" height="18" rx="5" fill="#1E79AE"/>
+          <path d="M20 18 Q25 7 36 6 L58 6 Q70 7 74 18Z" fill="#2a8fd4"/>
+          <rect x="25" y="8" width="15" height="9" rx="2" fill="#a8d8f5" opacity="0.85"/>
+          <rect x="44" y="8" width="15" height="9" rx="2" fill="#a8d8f5" opacity="0.85"/>
+          <circle cx="22" cy="36" r="6" fill="#0a1f33"/><circle cx="22" cy="36" r="3" fill="#4a90d9"/>
+          <circle cx="66" cy="36" r="6" fill="#0a1f33"/><circle cx="66" cy="36" r="3" fill="#4a90d9"/>
+          <ellipse cx="84" cy="24" rx="4" ry="3" fill="#FACA2A" opacity="0.9"/>
+          <line x1="42" y1="19" x2="42" y2="35" stroke="#1564a0" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+  </div><!-- /story-banner -->
+
 </section>
 
 <!-- ========== TESTIMONIALS ========== -->
