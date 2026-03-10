@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const plans = {
     regular: {
       name: 'Regular Monthly Car Wash',
-      price: '$50.74/mo'
+      price: '$54.99/mo (Inc. Tax)'
     },
     ultimate: {
       name: 'Ultimate Monthly Car Wash',
-      price: '$64.58/mo'
+      price: '$69.99/mo (Inc. Tax)'
     }
   };
 
