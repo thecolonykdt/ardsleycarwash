@@ -1340,30 +1340,67 @@ section { padding: 100px 0; }
   margin-bottom: 24px;
 }
 
-.detailing-features {
-  margin-bottom: 24px;
+.detailing-pricing {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.detailing-features li {
-  padding: 8px 0;
-  font-size: 0.92rem;
-  color: var(--slate);
+.detailing-pricing-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.92rem;
 }
 
-.detailing-features li::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(238,58,35,0.1);
-  flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23EE3A23' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 10px;
+.detailing-pricing-row:last-child {
+  border-bottom: none;
+}
+
+.detailing-pricing-row.walk-in {
+  background: #fff;
+}
+
+.detailing-pricing-row.appt {
+  background: #fff8f7;
+}
+
+.dp-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.dp-price {
+  font-weight: 700;
+  color: var(--red);
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+.dp-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.walk-in-badge {
+  background: #e6f4ea;
+  color: #2e7d32;
+}
+
+.appt-badge {
+  background: #fff0ed;
+  color: var(--red);
 }
 
 .detailing-note {
