@@ -491,7 +491,7 @@
 .ce-quote-banner {
   position: relative;
   background: linear-gradient(160deg, #0a1628 0%, #0f2240 40%, #0d1e3a 70%, #0a1628 100%);
-  padding: 80px 24px 90px;
+  padding: 40px 24px 48px;
   overflow: hidden;
   text-align: center;
 }
@@ -613,8 +613,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 28px;
+  margin: 0 auto 14px;
   animation: ceIconPulse 3s ease-in-out infinite;
+}
+
+.ce-qb-icon svg {
+  width: 40px;
+  height: 40px;
 }
 
 @keyframes ceIconPulse {
@@ -623,7 +628,7 @@
 }
 
 .ce-qb-quote {
-  margin: 0 0 32px;
+  margin: 0 0 20px;
   padding: 0;
   border: none;
   position: relative;
@@ -632,13 +637,13 @@
 .ce-qb-open-quote,
 .ce-qb-close-quote {
   font-family: Georgia, serif;
-  font-size: 5rem;
+  font-size: 3.5rem;
   line-height: 0;
   color: rgba(250, 202, 42, 0.35);
   position: absolute;
 }
-.ce-qb-open-quote  { top: 20px;  left: -10px; }
-.ce-qb-close-quote { bottom: -10px; right: -10px; }
+.ce-qb-open-quote  { top: 14px;  left: -6px; }
+.ce-qb-close-quote { bottom: -8px; right: -6px; }
 
 .ce-qb-line {
   display: block;
@@ -652,14 +657,14 @@
   animation: ceLineReveal 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
 }
 
-.ce-qb-line--1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); animation-delay: 0.2s; }
+.ce-qb-line--1 { font-size: clamp(1.1rem, 2.5vw, 1.55rem); animation-delay: 0.2s; }
 .ce-qb-line--2 {
-  font-size: clamp(1rem, 2.5vw, 1.45rem);
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
   color: #FACC15;
-  margin: 10px 0;
+  margin: 6px 0;
   animation-delay: 0.5s;
 }
-.ce-qb-line--3 { font-size: clamp(1.1rem, 2.8vw, 1.65rem); color: rgba(255,255,255,0.85); animation-delay: 0.8s; }
+.ce-qb-line--3 { font-size: clamp(0.95rem, 2vw, 1.25rem); color: rgba(255,255,255,0.85); animation-delay: 0.8s; }
 
 @keyframes ceLineReveal {
   to { opacity: 1; transform: translateY(0); }
@@ -692,9 +697,9 @@
 }
 
 @media (max-width: 580px) {
-  .ce-quote-banner { padding: 60px 20px 70px; }
+  .ce-quote-banner { padding: 28px 20px 36px; }
   .ce-qb-open-quote,
-  .ce-qb-close-quote { font-size: 3.5rem; }
+  .ce-qb-close-quote { font-size: 2.5rem; }
 }
 
 /* ===== NAV ACTIVE STATE ===== */
