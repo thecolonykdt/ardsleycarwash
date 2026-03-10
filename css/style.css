@@ -1163,6 +1163,9 @@ section { padding: 100px 0; }
 .pkg-card--red.featured {
   box-shadow: 0 8px 40px rgba(238,58,35,0.3), 0 0 0 2px rgba(238,58,35,0.5) !important;
 }
+.pkg-card--gold.featured {
+  box-shadow: 0 8px 40px rgba(217,119,6,0.35), 0 0 0 2px rgba(250,204,21,0.6) !important;
+}
 
 /* Corner decorative bubbles */
 .pkg-card-bubble {
@@ -1236,6 +1239,16 @@ section { padding: 100px 0; }
 @keyframes pkgPulseBadge {
   0%, 100% { box-shadow: 0 3px 10px rgba(238,58,35,0.45); transform: scale(1); }
   50%       { box-shadow: 0 3px 20px rgba(238,58,35,0.75); transform: scale(1.06); }
+}
+.pkg-popular-gold {
+  background: linear-gradient(135deg, #D97706, #FACC15);
+  animation: pkgPulseBadgeGold 2s ease-in-out infinite;
+  box-shadow: 0 3px 10px rgba(217,119,6,0.45);
+  color: #1a2e4a;
+}
+@keyframes pkgPulseBadgeGold {
+  0%, 100% { box-shadow: 0 3px 10px rgba(217,119,6,0.45); transform: scale(1); }
+  50%       { box-shadow: 0 3px 20px rgba(217,119,6,0.75); transform: scale(1.06); }
 }
 
 /* Price pill badge */
