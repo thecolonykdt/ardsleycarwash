@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('Booking submit error:', err);
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
-          alert('Something went wrong. Please call us at (914) 693-2200 or email ardsleycarwashny@gmail.com.');
+          alert('Something went wrong. Please call us at (914) 693-2200 or email theardsleycarwash@gmail.com.');
           return;
         }
       }
