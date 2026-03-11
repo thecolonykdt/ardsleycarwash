@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearSelect = document.getElementById('year');
   const currentYear = new Date().getFullYear();
 
-  for (let y = currentYear + 1; y >= 2000; y--) {
+  for (let y = currentYear + 1; y >= 1990; y--) {
     const opt = document.createElement('option');
     opt.value = y;
     opt.textContent = y;
@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vehicle_year:  document.getElementById('year').value,
         vehicle_make:  document.getElementById('make').value,
         vehicle_model: document.getElementById('model').value.trim(),
+        vehicle_plate: document.getElementById('plate').value.trim(),
         plan:          planKey || 'regular',
         status:        'pending',
       };
