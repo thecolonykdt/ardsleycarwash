@@ -67,7 +67,7 @@
       <h1>Community &amp; Events</h1>
       <p class="ce-hero-sub">We're more than a car wash — we're your neighbors. For over 20 years we've shown up for the teams, organizations, and events that make this community great.</p>
       <div class="ce-hero-links">
-        <a href="#teams" class="btn btn-yellow btn-lg">Sponsored Teams</a>
+        <a href="#gallery" class="btn btn-yellow btn-lg">Photo Gallery</a>
         <a href="#events" class="btn btn-outline-white btn-lg">Upcoming Events</a>
       </div>
     </div>
@@ -271,6 +271,23 @@
   </div>
 
 </div>
+
+<!-- ========== GALLERY ========== -->
+<section id="gallery" class="ce-section ce-section-alt">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <p class="section-label red">In The Community</p>
+      <h2 class="section-title">Photo Gallery</h2>
+      <p class="section-subtitle">A growing album of moments from our events, partnerships, and community — updated as we go.</p>
+    </div>
+
+    <div class="ce-gallery-grid" id="galleryGrid">
+      <div class="ce-gallery-loading">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ========== EVENTS ========== -->
 <section id="events" class="ce-section">
@@ -536,6 +553,15 @@
     </div>
   </div>
 </footer>
+
+<!-- ========== GALLERY LIGHTBOX ========== -->
+<div class="ce-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="ce-lightbox-inner">
+    <img src="" alt="" id="lightboxImg"/>
+    <p class="ce-lightbox-caption" id="lightboxCaption"></p>
+  </div>
+  <button class="ce-lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+</div>
 
 <!-- ========== BACK TO TOP ========== -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top">

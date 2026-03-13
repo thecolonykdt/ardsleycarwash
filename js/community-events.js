@@ -250,6 +250,141 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ===== GALLERY ===== */
+
+  // Predefined gallery tags and their color keys
+  const GALLERY_TAG_COLORS = {
+    'Event':            'blue',
+    'Sponsorship':      'red',
+    'Community':        'green',
+    'Behind the Scenes':'yellow',
+    'Fundraiser':       'purple',
+    'Holiday':          'orange',
+    'Team':             'navy',
+  };
+
+  // Assign varied size classes based on index for visual interest
+  const GALLERY_SPANS = [
+    'ce-gallery-item--big',   // 0 — 2×2
+    '',                        // 1 — 1×1
+    'ce-gallery-item--tall',  // 2 — 1×2
+    '',                        // 3 — 1×1
+    '',                        // 4 — 1×1
+    'ce-gallery-item--wide',  // 5 — 2×1
+    '',                        // 6 — 1×1
+    'ce-gallery-item--tall',  // 7 — 1×2
+    '',                        // 8 — 1×1
+    'ce-gallery-item--wide',  // 9 — 2×1
+    '',                        // 10 — 1×1
+    '',                        // 11 — 1×1
+  ];
+
+  function renderGalleryItem(photo, imageName, index) {
+    const src      = fileUrl(photo, imageName);
+    const alt      = photo.alt_text || photo.caption || 'Community photo';
+    const caption  = photo.caption || '';
+    const span     = GALLERY_SPANS[index % GALLERY_SPANS.length] || '';
+    const tag      = photo.tag || '';
+    const tagColor = GALLERY_TAG_COLORS[tag] || 'blue';
+    const tagHtml  = tag
+      ? `<span class="ce-gallery-tag ce-gallery-tag--${tagColor}">${tag}</span>`
+      : '';
+
+    return `
+      <div class="ce-gallery-item ${span}" data-animate data-delay="${Math.min(index, 5) * 60}"
+           data-src="${src}" data-caption="${caption.replace(/"/g, '&quot;')}" tabindex="0" role="button" aria-label="View photo${caption ? ': ' + caption : ''}">
+        <img src="${src}" alt="${alt}" loading="lazy"/>
+        ${tagHtml}
+        <div class="ce-gallery-overlay">
+          <svg class="ce-gallery-overlay-icon" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+          ${caption ? `<span class="ce-gallery-overlay-caption">${caption}</span>` : ''}
+        </div>
+      </div>`;
+  }
+
+  async function loadGallery() {
+    const grid = document.getElementById('galleryGrid');
+    if (!grid) return;
+
+    if (!APP_CONFIG.POCKETBASE_URL) {
+      grid.innerHTML = '<p class="ce-gallery-empty">Photo gallery coming soon!</p>';
+      return;
+    }
+
+    const max = APP_CONFIG.GALLERY_MAX || 12;
+    try {
+      const res = await fetch(`${apiUrl(APP_CONFIG.COLLECTIONS.GALLERY)}?sort=-created&perPage=${max}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const photos = data.items || [];
+
+      // Expand multi-image records into individual items, cap at GALLERY_MAX
+      const items = [];
+      for (const photo of photos) {
+        const images = Array.isArray(photo.image) ? photo.image : (photo.image ? [photo.image] : []);
+        for (const img of images) {
+          items.push({ photo, img });
+          if (items.length >= max) break;
+        }
+        if (items.length >= max) break;
+      }
+
+      grid.innerHTML = items.length
+        ? items.map(({ photo, img }, i) => renderGalleryItem(photo, img, i)).join('')
+        : '<p class="ce-gallery-empty">Photos coming soon — check back!</p>';
+
+      setupAnimations();
+    } catch (err) {
+      console.error('Gallery load error:', err);
+      grid.innerHTML = '<p class="ce-gallery-empty">Photos coming soon — check back!</p>';
+    }
+  }
+
+  // Lightbox
+  function initLightbox() {
+    const lightbox = document.getElementById('galleryLightbox');
+    const lbImg    = document.getElementById('lightboxImg');
+    const lbCap    = document.getElementById('lightboxCaption');
+    const lbClose  = document.getElementById('lightboxClose');
+    if (!lightbox) return;
+
+    function openLightbox(src, caption) {
+      lbImg.src = src;
+      lbImg.alt = caption || '';
+      lbCap.textContent = caption || '';
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    document.getElementById('galleryGrid').addEventListener('click', e => {
+      const item = e.target.closest('.ce-gallery-item');
+      if (!item) return;
+      openLightbox(item.dataset.src, item.dataset.caption);
+    });
+
+    document.getElementById('galleryGrid').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const item = e.target.closest('.ce-gallery-item');
+        if (item) { e.preventDefault(); openLightbox(item.dataset.src, item.dataset.caption); }
+      }
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  }
+
+  loadGallery().then(initLightbox);
+
   loadEvents();
   loadTeams();
   loadPartners();

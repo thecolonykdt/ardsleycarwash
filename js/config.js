@@ -19,7 +19,11 @@ const APP_CONFIG = {
     EVENTS:     'events',
     TEAMS:      'teams',
     PARTNERS:   'partners',
+    GALLERY:    'gallery',
   },
+
+  // Maximum gallery photos to display (latest uploaded first)
+  GALLERY_MAX: 25,
 };
 
 // Convenience helper — builds the full records endpoint URL
