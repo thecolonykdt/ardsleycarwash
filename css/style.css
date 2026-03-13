@@ -829,8 +829,17 @@ ul { list-style: none; }
 .trust-bar .container {
   display: flex;
   justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
+}
+
+.trust-bullets {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--slate);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.04em;
+  word-spacing: 0.1em;
 }
 
 .trust-item {
