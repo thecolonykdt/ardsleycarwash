@@ -834,8 +834,17 @@ ul { list-style: none; }
   text-align: center;
   margin: 0;
   letter-spacing: 0.04em;
-  word-spacing: 0.1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 8px;
 }
+.trust-sep {
+  color: var(--slate);
+  opacity: 0.5;
+}
+
 
 .trust-item {
   display: flex;
