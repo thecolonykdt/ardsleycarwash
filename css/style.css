@@ -1879,19 +1879,28 @@ section { padding: 100px 0; }
 .mc-card--ultimate .mc-features li { color: #E3F2FD; }
 .mc-card--ultimate .mc-features li::before { color: #64B5F6; }
 
-/* Footer row: mascot left, price bubble right */
+/* Footer row: features left, price bubble right */
 .mc-card-footer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: 12px;
   margin-top: auto;
   padding-top: 10px;
   width: 100%;
 }
 
-.mc-mascot { flex-shrink: 0; overflow: visible; }
-.mc-mascot--vacuum { width: 130px; height: 115px; }
-.mc-mascot--tire   { width: 100px; height: 96px; }
+.mc-mascot {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.mc-mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 /* Price bubble */
 .mc-price-bubble {
