@@ -98,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = 'Sending…';
 
       const payload = {
-        name:           document.getElementById('name').value.trim(),
-        contact:        document.getElementById('contact').value.trim(),
-        preferred_date: document.getElementById('date').value || null,
-        preferred_time: document.getElementById('time').value || null,
-        message:        (document.getElementById('message').value || '').trim(),
-        status:         'new',
+        name:             document.getElementById('name').value.trim(),
+        contact:          document.getElementById('contact').value.trim(),
+        preferred_date:   document.getElementById('date').value || null,
+        preferred_time:   document.getElementById('time').value || null,
+        detailing_service: document.getElementById('service').value || null,
+        message:          (document.getElementById('message').value || '').trim(),
+        status:           'new',
       };
 
       if (APP_CONFIG.POCKETBASE_URL) {
@@ -114,6 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
             body:    JSON.stringify(payload),
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          // Fire-and-forget notification email — won't block the confirmation
+          emailjs.send(APP_CONFIG.EMAILJS.SERVICE_ID, APP_CONFIG.EMAILJS.TEMPLATE_ID, {
+            name:             payload.name,
+            contact:          payload.contact,
+            preferred_date:   payload.preferred_date    || 'Not specified',
+            preferred_time:   payload.preferred_time    || 'Not specified',
+            detailing_service: payload.detailing_service || 'Not specified',
+            message:          payload.message           || 'No message',
+          }).catch(err => console.warn('EmailJS notification failed:', err));
         } catch (err) {
           console.error('Booking submit error:', err);
           submitBtn.disabled = false;

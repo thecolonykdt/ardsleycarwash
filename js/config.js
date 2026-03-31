@@ -24,6 +24,14 @@ const APP_CONFIG = {
 
   // Maximum gallery photos to display (latest uploaded first)
   GALLERY_MAX: 25,
+
+  // EmailJS — booking notification emails
+  // Get these from your EmailJS dashboard (emailjs.com)
+  EMAILJS: {
+    PUBLIC_KEY:  '38NHnKduh6oN324o9',
+    SERVICE_ID:  'service_4jaqgvr',
+    TEMPLATE_ID: 'template_enzr9dm',
+  },
 };
 
 // Convenience helper — builds the full records endpoint URL
