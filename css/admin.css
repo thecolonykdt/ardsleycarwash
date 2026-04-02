@@ -163,6 +163,14 @@ body.admin-mode .promo-banner {
   top: 48px;
 }
 
+/* Navbar must sit below toolbar + promo banner */
+body.admin-mode .navbar {
+  top: 88px; /* 48px toolbar + 40px promo banner */
+}
+body.admin-mode .promo-banner.hidden ~ .navbar {
+  top: 48px; /* 48px toolbar only */
+}
+
 /* ── PENCIL ICON WRAPPER ── */
 .admin-editable-wrap {
   position: relative;
