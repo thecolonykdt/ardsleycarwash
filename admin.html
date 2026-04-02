@@ -63,6 +63,24 @@
   <p class="admin-edit-status" id="adminEditStatus"></p>
 </div>
 
+<div id="adminHeroGroupPopover" class="admin-edit-popover hidden">
+  <span class="admin-edit-key-label">Hero Phrases</span>
+  <div class="admin-group-fields">
+    <label class="admin-group-field-label">Phrase 1</label>
+    <textarea id="adminHeroPhrase0" class="admin-group-textarea" rows="3" placeholder="HTML allowed…"></textarea>
+    <label class="admin-group-field-label">Phrase 2</label>
+    <textarea id="adminHeroPhrase1" class="admin-group-textarea" rows="3" placeholder="HTML allowed…"></textarea>
+    <label class="admin-group-field-label">Phrase 3</label>
+    <textarea id="adminHeroPhrase2" class="admin-group-textarea" rows="3" placeholder="HTML allowed…"></textarea>
+  </div>
+  <p class="admin-edit-hint html-hint">HTML is preserved. Use &lt;br&gt;, &lt;span class="highlight-yellow"&gt;, &lt;span class="highlight-red"&gt; etc.</p>
+  <div class="admin-edit-actions">
+    <button type="button" id="adminHeroGroupSave" class="btn admin-btn-save">Save All</button>
+    <button type="button" id="adminHeroGroupCancel" class="btn admin-btn-cancel">Cancel</button>
+  </div>
+  <p class="admin-edit-status" id="adminHeroGroupStatus"></p>
+</div>
+
 <!-- Mobile overlay for menu -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 

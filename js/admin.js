@@ -21,6 +21,8 @@
   let loginOverlay, loginForm, loginEmailInput, loginPasswordInput, loginError;
   let toolbar;
   let popover, popoverKeyLabel, popoverTextarea, popoverHint, popoverSaveBtn, popoverCancelBtn, popoverStatus;
+  let heroGroupPopover, heroGroupTextareas, heroGroupSaveBtn, heroGroupStatus;
+  let heroGroupEls = []; // the actual DOM elements for each phrase
 
   // ── INIT ──
   document.addEventListener('DOMContentLoaded', async () => {
@@ -53,6 +55,15 @@
     popoverSaveBtn    = document.getElementById('adminEditSave');
     popoverCancelBtn  = document.getElementById('adminEditCancel');
     popoverStatus     = document.getElementById('adminEditStatus');
+
+    heroGroupPopover   = document.getElementById('adminHeroGroupPopover');
+    heroGroupSaveBtn   = document.getElementById('adminHeroGroupSave');
+    heroGroupStatus    = document.getElementById('adminHeroGroupStatus');
+    heroGroupTextareas = [
+      document.getElementById('adminHeroPhrase0'),
+      document.getElementById('adminHeroPhrase1'),
+      document.getElementById('adminHeroPhrase2'),
+    ];
   }
 
   // ── LOGIN ──
@@ -106,8 +117,14 @@
     // Inject pencil icons
     injectPencilIcons();
 
+    // Replace individual hero-phrase pencils with one grouped pencil
+    groupHeroPhrases();
+
     // FAQ accordion (main.js is not loaded on admin page)
     initFaqAccordion();
+
+    // Bind hero group popover events
+    bindHeroGroupEvents();
 
     // Bind logout
     document.getElementById('adminLogout').addEventListener('click', handleLogout);
@@ -215,6 +232,147 @@
     });
   }
 
+  // ── HERO PHRASE GROUP EDITING ──
+  function groupHeroPhrases() {
+    const keys = ['hero_phrase_0', 'hero_phrase_1', 'hero_phrase_2'];
+    heroGroupEls = [];
+
+    keys.forEach(key => {
+      const el = document.querySelector(`[data-content-key="${key}"]`);
+      if (!el) return;
+      heroGroupEls.push(el);
+      // Remove the individual pencil button injected by injectPencilIcons
+      const wrap = el.parentElement;
+      if (wrap && wrap.classList.contains('admin-editable-wrap')) {
+        const pencil = wrap.querySelector('.admin-pencil-btn');
+        if (pencil) pencil.remove();
+      }
+    });
+
+    if (!heroGroupEls.length) return;
+
+    // Wrap h1.hero-headline in a hoverable block wrapper with one pencil
+    const headline = document.querySelector('.hero-headline');
+    if (!headline) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'admin-editable-wrap block admin-hero-group-wrap';
+    headline.parentNode.insertBefore(wrap, headline);
+    wrap.appendChild(headline);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'admin-pencil-btn';
+    btn.setAttribute('aria-label', 'Edit Hero Phrases');
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+    wrap.appendChild(btn);
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openHeroGroupPopover(btn);
+    });
+  }
+
+  function openHeroGroupPopover(anchorBtn) {
+    // Close any single-field popover
+    closePopover();
+
+    // Populate textareas with current values
+    const keys = ['hero_phrase_0', 'hero_phrase_1', 'hero_phrase_2'];
+    heroGroupTextareas.forEach((ta, i) => {
+      const key = keys[i];
+      ta.value = contentMap[key] ? contentMap[key].value : heroGroupEls[i].innerHTML.trim();
+    });
+
+    heroGroupStatus.textContent = '';
+    heroGroupStatus.className = 'admin-edit-status';
+    heroGroupSaveBtn.disabled = false;
+    heroGroupSaveBtn.textContent = 'Save All';
+
+    heroGroupPopover.classList.remove('hidden', 'popover-above');
+    positionPopover(anchorBtn, heroGroupPopover);
+
+    setTimeout(() => heroGroupTextareas[0].focus(), 50);
+  }
+
+  async function saveHeroGroup() {
+    heroGroupSaveBtn.disabled = true;
+    heroGroupSaveBtn.textContent = 'Saving…';
+    heroGroupStatus.textContent = '';
+
+    const keys = ['hero_phrase_0', 'hero_phrase_1', 'hero_phrase_2'];
+
+    try {
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const newValue = heroGroupTextareas[i].value;
+
+        // Apply to DOM immediately
+        applyToDOM(heroGroupEls[i], 'html', newValue);
+
+        // Save to PocketBase
+        const existing = contentMap[key];
+        let savedRecord;
+
+        if (existing && existing.pbId) {
+          const res = await fetch(
+            `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records/${existing.pbId}`,
+            { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_value: newValue }) }
+          );
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          savedRecord = await res.json();
+        } else {
+          const res = await fetch(
+            `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_key: key, content_value: newValue, section: 'hero' }) }
+          );
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          savedRecord = await res.json();
+        }
+
+        contentMap[key] = { pbId: savedRecord.id, value: newValue };
+      }
+
+      heroGroupStatus.textContent = 'Saved!';
+      heroGroupStatus.className = 'admin-edit-status success';
+      setTimeout(() => closeHeroGroupPopover(), 800);
+
+    } catch (err) {
+      console.error('[admin] Hero group save failed:', err);
+      heroGroupStatus.textContent = 'Save failed. Check your connection.';
+      heroGroupStatus.className = 'admin-edit-status error';
+      heroGroupSaveBtn.disabled = false;
+      heroGroupSaveBtn.textContent = 'Save All';
+    }
+  }
+
+  function closeHeroGroupPopover() {
+    heroGroupPopover.classList.add('hidden');
+    heroGroupSaveBtn.disabled = false;
+    heroGroupSaveBtn.textContent = 'Save All';
+  }
+
+  function bindHeroGroupEvents() {
+    heroGroupSaveBtn.addEventListener('click', saveHeroGroup);
+    document.getElementById('adminHeroGroupCancel').addEventListener('click', closeHeroGroupPopover);
+
+    heroGroupTextareas.forEach(ta => {
+      ta.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeHeroGroupPopover();
+        else if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') saveHeroGroup();
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!heroGroupPopover.classList.contains('hidden')) {
+        if (!heroGroupPopover.contains(e.target) && !e.target.closest('.admin-hero-group-wrap > .admin-pencil-btn')) {
+          closeHeroGroupPopover();
+        }
+      }
+    });
+  }
+
   // ── FAQ ACCORDION ──
   function initFaqAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
@@ -279,12 +437,13 @@
     setTimeout(() => popoverTextarea.focus(), 50);
   }
 
-  function positionPopover(anchorEl) {
+  function positionPopover(anchorEl, targetPopover) {
+    const pop       = targetPopover || popover;
     const rect      = anchorEl.getBoundingClientRect();
     const scrollY   = window.scrollY;
     const scrollX   = window.scrollX;
     const popW      = Math.min(460, window.innerWidth * 0.9);
-    const popH      = popover.offsetHeight || 240;
+    const popH      = pop.offsetHeight || 240;
     const margin    = 12;
 
     // Try below first
@@ -300,12 +459,12 @@
     // If it overflows the bottom of viewport, place above
     if (rect.bottom + popH + margin > window.innerHeight) {
       top = rect.top + scrollY - popH - margin;
-      popover.classList.add('popover-above');
+      pop.classList.add('popover-above');
     }
 
-    popover.style.top  = top + 'px';
-    popover.style.left = left + 'px';
-    popover.style.width = popW + 'px';
+    pop.style.top  = top + 'px';
+    pop.style.left = left + 'px';
+    pop.style.width = popW + 'px';
   }
 
   function bindPopoverEvents() {
