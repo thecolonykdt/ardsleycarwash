@@ -1855,8 +1855,14 @@ section { padding: 100px 0; }
 .mc-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0;
   width: 100%;
+}
+.mc-features--centered {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .mc-features li {
   font-family: 'Fredoka One', cursive;
@@ -1880,14 +1886,16 @@ section { padding: 100px 0; }
 .mc-card--ultimate .mc-features li { color: #E3F2FD; }
 .mc-card--ultimate .mc-features li::before { color: #64B5F6; }
 
-/* Footer row: features left, price bubble right */
+.mc-card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
 .mc-card-footer {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 10px;
+  justify-content: flex-end;
   width: 100%;
 }
 
