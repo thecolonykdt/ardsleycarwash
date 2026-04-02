@@ -338,10 +338,14 @@ body.admin-mode button:not([class*="admin"]):not(#adminLogout):not(#backToTop):n
   pointer-events: none;
 }
 
-/* Re-enable FAQ questions so we can see their answers (but they're wrapped in pointer-events:none above) */
-/* Actually we want FAQ to still open for reference — re-enable */
+/* FAQ questions are clickable in admin so the accordion works */
 body.admin-mode .faq-question {
-  pointer-events: none;
+  pointer-events: auto;
+}
+
+/* Let the pencil icon overflow the faq-item's hidden boundary */
+body.admin-mode .faq-item {
+  overflow: visible;
 }
 
 /* Popover arrow indicator */
