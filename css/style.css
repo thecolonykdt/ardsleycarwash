@@ -1886,16 +1886,12 @@ section { padding: 100px 0; }
 .mc-card--ultimate .mc-features li { color: #E3F2FD; }
 .mc-card--ultimate .mc-features li::before { color: #64B5F6; }
 
-.mc-card-bottom {
+.mc-card-middle {
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.mc-card-footer {
-  display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
 }
 
