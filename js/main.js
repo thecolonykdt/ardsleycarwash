@@ -466,4 +466,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { passive: true });
   })();
 
+
+  // ===== ANNOUNCEMENT WIDGET =====
+  (async function () {
+    const ANN_KEY     = 'announcement_widget';
+    const DISMISS_KEY = 'annWidgetDismissed';
+    const widget      = document.getElementById('annWidget');
+    if (!widget || sessionStorage.getItem(DISMISS_KEY)) return;
+
+    // Load config from PocketBase
+    let cfg = null;
+    if (APP_CONFIG.POCKETBASE_URL) {
+      try {
+        const res = await fetch(
+          `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records?filter=(content_key='${ANN_KEY}')&perPage=1`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          const record = (data.items || [])[0];
+          if (record) cfg = JSON.parse(record.content_value);
+        }
+      } catch (_) {}
+    }
+
+    if (!cfg) return;
+    const hasContent = cfg.icon || cfg.heading || cfg.body || cfg.btnLabel || cfg.videoUrl;
+    if (!hasContent) return;
+
+    // Build widget HTML
+    let html = `<button class="ann-widget-x" id="annWidgetClose" aria-label="Close">&times;</button>`;
+
+    if (cfg.icon) {
+      const isUrl = cfg.icon.startsWith('http') || cfg.icon.startsWith('/');
+      html += `<div class="ann-widget-icon">${isUrl ? `<img src="${cfg.icon}" alt="">` : cfg.icon}</div>`;
+    }
+    if (cfg.heading)  html += `<h3 class="ann-widget-heading">${cfg.heading}</h3>`;
+    if (cfg.videoUrl) html += `<div class="ann-widget-video"><iframe src="${cfg.videoUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+    if (cfg.body)     html += `<div class="ann-widget-body">${cfg.body}</div>`;
+    if (cfg.btnLabel) {
+      const href = cfg.btnUrl || '#';
+      html += `<a href="${href}" class="ann-widget-btn">${cfg.btnLabel}</a>`;
+    }
+
+    widget.innerHTML = html;
+    widget.classList.remove('hidden');
+
+    // Trigger entrance animation after next paint
+    requestAnimationFrame(() => requestAnimationFrame(() => widget.classList.add('visible')));
+
+    // Close button
+    document.getElementById('annWidgetClose').addEventListener('click', () => {
+      widget.classList.remove('visible');
+      sessionStorage.setItem(DISMISS_KEY, '1');
+      setTimeout(() => widget.classList.add('hidden'), 350);
+    });
+  })();
+
 });

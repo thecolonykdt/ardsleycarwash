@@ -126,6 +126,9 @@
     // Bind hero group popover events
     bindHeroGroupEvents();
 
+    // Announcement widget editor
+    initAnnouncementWidget();
+
     // Bind logout
     document.getElementById('adminLogout').addEventListener('click', handleLogout);
   }
@@ -593,6 +596,214 @@
   function handleLogout() {
     sessionStorage.removeItem(SESSION_KEY);
     location.reload();
+  }
+
+  // ══════════════════════════════════════════════════════
+  // ANNOUNCEMENT WIDGET EDITOR
+  // ══════════════════════════════════════════════════════
+
+  const ANN_KEY = 'announcement_widget';
+
+  function initAnnouncementWidget() {
+    const floatBtn  = document.getElementById('annFloatBtn');
+    const modal     = document.getElementById('annModal');
+    const closeBtn  = document.getElementById('annModalClose');
+    const cancelBtn = document.getElementById('annCancelBtn');
+    const saveBtn   = document.getElementById('annSaveBtn');
+    const saveStatus = document.getElementById('annSaveStatus');
+    const bodyEditor = document.getElementById('annBody');
+    const linkBtn    = document.getElementById('annLinkBtn');
+    const linkRow    = document.getElementById('annLinkRow');
+    const linkInput  = document.getElementById('annLinkInput');
+    const linkApply  = document.getElementById('annLinkApply');
+
+    // Show floating button
+    floatBtn.classList.remove('hidden');
+
+    // Load existing config
+    let savedSelection = null;
+
+    if (contentMap[ANN_KEY]) {
+      try {
+        const cfg = JSON.parse(contentMap[ANN_KEY].value);
+        populateAnnFields(cfg);
+      } catch (_) {}
+    }
+
+    // ── Open / Close ──
+    floatBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      updateAnnPreview();
+    });
+
+    function closeModal() { modal.classList.add('hidden'); }
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // ── Live preview on any input change ──
+    ['annIcon', 'annHeading', 'annBtnLabel', 'annBtnUrl', 'annVideoUrl'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateAnnPreview);
+    });
+    bodyEditor.addEventListener('input', updateAnnPreview);
+
+    // ── WYSIWYG toolbar ──
+    document.querySelectorAll('.ann-tb-btn[data-cmd]').forEach(btn => {
+      btn.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // keep focus in editor
+        document.execCommand(btn.dataset.cmd, false, null);
+        updateAnnPreview();
+      });
+    });
+
+    // ── Link button ──
+    linkBtn.addEventListener('click', () => {
+      // Save selection before the input steals focus
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount) {
+        savedSelection = sel.getRangeAt(0).cloneRange();
+      }
+      linkRow.classList.toggle('hidden');
+      if (!linkRow.classList.contains('hidden')) linkInput.focus();
+    });
+
+    linkApply.addEventListener('click', applyLink);
+    linkInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') applyLink();
+      if (e.key === 'Escape') linkRow.classList.add('hidden');
+    });
+
+    function applyLink() {
+      const url = linkInput.value.trim();
+      if (!url) return;
+      bodyEditor.focus();
+      // Restore selection
+      if (savedSelection) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(savedSelection);
+      }
+      document.execCommand('createLink', false, url);
+      linkRow.classList.add('hidden');
+      linkInput.value = '';
+      savedSelection = null;
+      updateAnnPreview();
+    }
+
+    // ── Save ──
+    saveBtn.addEventListener('click', () => saveAnnWidget(saveBtn, saveStatus));
+  }
+
+  function populateAnnFields(cfg) {
+    document.getElementById('annIcon').value     = cfg.icon     || '';
+    document.getElementById('annHeading').value  = cfg.heading  || '';
+    document.getElementById('annBtnLabel').value = cfg.btnLabel || '';
+    document.getElementById('annBtnUrl').value   = cfg.btnUrl   || '#';
+    document.getElementById('annVideoUrl').value = cfg.videoUrl || '';
+    document.getElementById('annBody').innerHTML  = cfg.body    || '';
+  }
+
+  function getAnnConfig() {
+    return {
+      icon:     document.getElementById('annIcon').value.trim(),
+      heading:  document.getElementById('annHeading').value.trim(),
+      body:     document.getElementById('annBody').innerHTML.trim(),
+      btnLabel: document.getElementById('annBtnLabel').value.trim(),
+      btnUrl:   document.getElementById('annBtnUrl').value.trim() || '#',
+      videoUrl: document.getElementById('annVideoUrl').value.trim(),
+    };
+  }
+
+  function updateAnnPreview() {
+    const cfg     = getAnnConfig();
+    const preview = document.getElementById('annWidgetPreview');
+    const hasContent = cfg.icon || cfg.heading || cfg.body || cfg.btnLabel || cfg.videoUrl;
+
+    if (!hasContent) {
+      preview.innerHTML = '<p class="ann-preview-empty">Fill in the fields to see a preview</p>';
+      return;
+    }
+
+    let html = `<button class="ann-widget-close-x" tabindex="-1">&times;</button>`;
+
+    // Icon
+    if (cfg.icon) {
+      const isUrl = cfg.icon.startsWith('http') || cfg.icon.startsWith('/');
+      html += `<div class="ann-widget-icon">${
+        isUrl
+          ? `<img src="${cfg.icon}" alt="icon">`
+          : cfg.icon
+      }</div>`;
+    }
+
+    // Heading
+    if (cfg.heading) {
+      html += `<h3 class="ann-widget-heading">${cfg.heading}</h3>`;
+    }
+
+    // Video
+    if (cfg.videoUrl) {
+      html += `<div class="ann-widget-video"><iframe src="${cfg.videoUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+    }
+
+    // Body
+    if (cfg.body) {
+      html += `<div class="ann-widget-body">${cfg.body}</div>`;
+    }
+
+    // Button
+    if (cfg.btnLabel) {
+      html += `<button class="ann-widget-btn">${cfg.btnLabel}</button>`;
+    }
+
+    preview.innerHTML = html;
+  }
+
+  async function saveAnnWidget(saveBtn, saveStatus) {
+    const cfg      = getAnnConfig();
+    const jsonValue = JSON.stringify(cfg);
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving…';
+    saveStatus.textContent = '';
+    saveStatus.className = 'ann-save-status';
+
+    try {
+      const existing = contentMap[ANN_KEY];
+      let savedRecord;
+
+      if (existing && existing.pbId) {
+        const res = await fetch(
+          `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records/${existing.pbId}`,
+          { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_value: jsonValue }) }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        savedRecord = await res.json();
+      } else {
+        const res = await fetch(
+          `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records`,
+          { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_key: ANN_KEY, content_value: jsonValue, section: 'announcement' }) }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        savedRecord = await res.json();
+      }
+
+      contentMap[ANN_KEY] = { pbId: savedRecord.id, value: jsonValue };
+      saveStatus.textContent = 'Widget saved!';
+      saveStatus.className = 'ann-save-status success';
+      saveBtn.textContent = 'Save Widget';
+      saveBtn.disabled = false;
+      setTimeout(() => { saveStatus.textContent = ''; saveStatus.className = 'ann-save-status'; }, 3000);
+
+    } catch (err) {
+      console.error('[admin] Announcement widget save failed:', err);
+      saveStatus.textContent = 'Save failed. Check connection.';
+      saveStatus.className = 'ann-save-status error';
+      saveBtn.textContent = 'Save Widget';
+      saveBtn.disabled = false;
+    }
   }
 
 })();
