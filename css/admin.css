@@ -837,7 +837,10 @@ body.admin-mode .ann-float-btn {
   border: none;
 }
 
-/* ── Disable the float btn hover outline in admin ── */
-body.admin-mode .ann-float-btn {
+/* ── Re-enable all interactions inside the announcement modal and float btn ── */
+body.admin-mode .ann-float-btn,
+body.admin-mode .ann-modal button,
+body.admin-mode .ann-modal input,
+body.admin-mode .ann-modal [contenteditable] {
   pointer-events: auto !important;
 }

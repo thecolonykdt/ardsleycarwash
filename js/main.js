@@ -493,6 +493,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const hasContent = cfg.icon || cfg.heading || cfg.body || cfg.btnLabel || cfg.videoUrl;
     if (!hasContent) return;
 
+    function toEmbedUrl(url) {
+      if (!url) return '';
+      try {
+        const u = new URL(url);
+        let videoId = null;
+        if (u.hostname.includes('youtu.be')) {
+          videoId = u.pathname.slice(1);
+        } else if (u.hostname.includes('youtube.com')) {
+          if (u.pathname.startsWith('/embed/')) return url;
+          if (u.pathname.startsWith('/shorts/')) videoId = u.pathname.split('/shorts/')[1];
+          else videoId = u.searchParams.get('v');
+        }
+        if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+      } catch (_) {}
+      return url;
+    }
+
     // Build widget HTML
     let html = `<button class="ann-widget-x" id="annWidgetClose" aria-label="Close">&times;</button>`;
 
@@ -501,7 +518,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       html += `<div class="ann-widget-icon">${isUrl ? `<img src="${cfg.icon}" alt="">` : cfg.icon}</div>`;
     }
     if (cfg.heading)  html += `<h3 class="ann-widget-heading">${cfg.heading}</h3>`;
-    if (cfg.videoUrl) html += `<div class="ann-widget-video"><iframe src="${cfg.videoUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+    if (cfg.videoUrl) html += `<div class="ann-widget-video"><iframe src="${toEmbedUrl(cfg.videoUrl)}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
     if (cfg.body)     html += `<div class="ann-widget-body">${cfg.body}</div>`;
     if (cfg.btnLabel) {
       const href = cfg.btnUrl || '#';

@@ -633,9 +633,6 @@
     function closeModal() { modal.classList.add('hidden'); }
     closeBtn.addEventListener('click', closeModal);
     cancelBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
 
     // ── Live preview on any input change ──
     ['annIcon', 'annHeading', 'annBtnLabel', 'annBtnUrl', 'annVideoUrl'].forEach(id => {
@@ -643,28 +640,64 @@
     });
     bodyEditor.addEventListener('input', updateAnnPreview);
 
-    // ── WYSIWYG toolbar ──
-    document.querySelectorAll('.ann-tb-btn[data-cmd]').forEach(btn => {
-      btn.addEventListener('mousedown', (e) => {
-        e.preventDefault();        // keep selection alive
-        bodyEditor.focus();        // ensure editor has focus
-        document.execCommand(btn.dataset.cmd, false, null);
-        updateAnnPreview();
-      });
-    });
+    // ── WYSIWYG helpers (no execCommand) ──
+    const FORMAT_MAP = { bold: 'strong', italic: 'em', underline: 'u' };
 
-    // ── Link button — prompt for URL ──
-    linkBtn.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      const saved = saveSelection();
-      const url = window.prompt('Enter URL:', 'https://');
-      if (url && url !== 'https://') {
-        bodyEditor.focus();
-        restoreSelection(saved);
-        document.execCommand('createLink', false, url);
-        updateAnnPreview();
+    function applyInlineFormat(tag) {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount || sel.isCollapsed) return;
+      const range = sel.getRangeAt(0);
+
+      // If selection is already inside this tag → unwrap it
+      let ancestor = range.commonAncestorContainer;
+      if (ancestor.nodeType === Node.TEXT_NODE) ancestor = ancestor.parentElement;
+      const existing = ancestor.closest(tag);
+      if (existing) {
+        existing.replaceWith(...existing.childNodes);
+        return;
       }
-    });
+
+      // Wrap selection in the tag
+      const el = document.createElement(tag);
+      try {
+        range.surroundContents(el);
+      } catch (_) {
+        // Selection spans element boundaries — extract then re-insert
+        el.appendChild(range.extractContents());
+        range.insertNode(el);
+      }
+
+      // Keep selection around the new element
+      sel.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(el);
+      sel.addRange(newRange);
+    }
+
+    function removeLink() {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return;
+      let ancestor = sel.getRangeAt(0).commonAncestorContainer;
+      if (ancestor.nodeType === Node.TEXT_NODE) ancestor = ancestor.parentElement;
+      const a = ancestor.closest('a');
+      if (a) a.replaceWith(...a.childNodes);
+    }
+
+    function insertLink(url) {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      try {
+        range.surroundContents(a);
+      } catch (_) {
+        a.appendChild(range.extractContents());
+        range.insertNode(a);
+      }
+    }
 
     function saveSelection() {
       const sel = window.getSelection();
@@ -676,6 +709,34 @@
       sel.removeAllRanges();
       sel.addRange(range);
     }
+
+    // ── WYSIWYG toolbar ──
+    document.querySelectorAll('.ann-tb-btn[data-cmd]').forEach(btn => {
+      btn.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        const cmd = btn.dataset.cmd;
+        if (cmd === 'unlink') {
+          removeLink();
+        } else {
+          const tag = FORMAT_MAP[cmd];
+          if (tag) applyInlineFormat(tag);
+        }
+        updateAnnPreview();
+      });
+    });
+
+    // ── Link button — prompt for URL ──
+    linkBtn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      const saved = saveSelection();
+      const url = window.prompt('Enter URL:', 'https://');
+      if (url && url.trim() && url !== 'https://') {
+        bodyEditor.focus();
+        restoreSelection(saved);
+        insertLink(url.trim());
+        updateAnnPreview();
+      }
+    });
 
     // ── Save ──
     saveBtn.addEventListener('click', () => saveAnnWidget(saveBtn, saveStatus));
@@ -699,6 +760,30 @@
       btnUrl:   document.getElementById('annBtnUrl').value.trim() || '#',
       videoUrl: document.getElementById('annVideoUrl').value.trim(),
     };
+  }
+
+  // Convert any YouTube URL to the /embed/ format required for iframes
+  function toEmbedUrl(url) {
+    if (!url) return '';
+    try {
+      const u = new URL(url);
+      let videoId = null;
+
+      if (u.hostname.includes('youtu.be')) {
+        // https://youtu.be/VIDEO_ID
+        videoId = u.pathname.slice(1);
+      } else if (u.hostname.includes('youtube.com')) {
+        if (u.pathname.startsWith('/embed/')) return url; // already correct
+        if (u.pathname.startsWith('/shorts/')) {
+          videoId = u.pathname.split('/shorts/')[1];
+        } else {
+          videoId = u.searchParams.get('v');
+        }
+      }
+
+      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+    } catch (_) {}
+    return url; // non-YouTube URL — return as-is
   }
 
   function updateAnnPreview() {
@@ -730,7 +815,7 @@
 
     // Video
     if (cfg.videoUrl) {
-      html += `<div class="ann-widget-video"><iframe src="${cfg.videoUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+      html += `<div class="ann-widget-video"><iframe src="${toEmbedUrl(cfg.videoUrl)}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
     }
 
     // Body
