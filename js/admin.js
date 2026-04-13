@@ -739,7 +739,7 @@
     });
 
     // ── Save ──
-    saveBtn.addEventListener('click', () => saveAnnWidget(saveBtn, saveStatus));
+    saveBtn.addEventListener('click', () => saveAnnWidget(saveBtn, saveStatus, closeModal));
   }
 
   function populateAnnFields(cfg) {
@@ -831,7 +831,7 @@
     preview.innerHTML = html;
   }
 
-  async function saveAnnWidget(saveBtn, saveStatus) {
+  async function saveAnnWidget(saveBtn, saveStatus, onSuccess) {
     const cfg      = getAnnConfig();
     const jsonValue = JSON.stringify(cfg);
 
@@ -861,11 +861,9 @@
       }
 
       contentMap[ANN_KEY] = { pbId: savedRecord.id, value: jsonValue };
-      saveStatus.textContent = 'Widget saved!';
-      saveStatus.className = 'ann-save-status success';
       saveBtn.textContent = 'Save Widget';
       saveBtn.disabled = false;
-      setTimeout(() => { saveStatus.textContent = ''; saveStatus.className = 'ann-save-status'; }, 3000);
+      if (onSuccess) onSuccess();
 
     } catch (err) {
       console.error('[admin] Announcement widget save failed:', err);

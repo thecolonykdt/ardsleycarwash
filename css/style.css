@@ -2944,9 +2944,9 @@ section { padding: 100px 0; }
 /* ===== ANNOUNCEMENT WIDGET (floating popup) ===== */
 .ann-widget {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 9000;
+  bottom: 32px;
+  right: 24px;
+  z-index: 9500;
   width: 300px;
   background: #fff;
   border-radius: 20px;

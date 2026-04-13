@@ -474,16 +474,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const widget      = document.getElementById('annWidget');
     if (!widget || sessionStorage.getItem(DISMISS_KEY)) return;
 
-    // Load config from PocketBase
+    // Load config from PocketBase — fetch all records and find our key
     let cfg = null;
     if (APP_CONFIG.POCKETBASE_URL) {
       try {
         const res = await fetch(
-          `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records?filter=(content_key='${ANN_KEY}')&perPage=1`
+          `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records?perPage=200&fields=content_key,content_value`
         );
         if (res.ok) {
           const data = await res.json();
-          const record = (data.items || [])[0];
+          const record = (data.items || []).find(r => r.content_key === ANN_KEY);
           if (record) cfg = JSON.parse(record.content_value);
         }
       } catch (_) {}
