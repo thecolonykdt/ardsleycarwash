@@ -126,8 +126,14 @@
     // Bind hero group popover events
     bindHeroGroupEvents();
 
+    // Show floating editor button group
+    document.getElementById('adminFloatGroup').classList.remove('hidden');
+
     // Announcement widget editor
     initAnnouncementWidget();
+
+    // Promo widget editor
+    initPromoWidget();
 
     // Bind logout
     document.getElementById('adminLogout').addEventListener('click', handleLogout);
@@ -614,9 +620,6 @@
     const bodyEditor = document.getElementById('annBody');
     const linkBtn    = document.getElementById('annLinkBtn');
 
-    // Show floating button
-    floatBtn.classList.remove('hidden');
-
     if (contentMap[ANN_KEY]) {
       try {
         const cfg = JSON.parse(contentMap[ANN_KEY].value);
@@ -872,6 +875,195 @@
       saveBtn.textContent = 'Save Widget';
       saveBtn.disabled = false;
     }
+  }
+
+  // ══════════════════════════════════════════════════════
+  // PROMO WIDGET EDITOR
+  // ══════════════════════════════════════════════════════
+
+  function initPromoWidget() {
+    const floatBtn   = document.getElementById('promoFloatBtn');
+    const modal      = document.getElementById('promoModal');
+    const closeBtn   = document.getElementById('promoModalClose');
+    const cancelBtn  = document.getElementById('promoCancelBtn');
+    const saveBtn    = document.getElementById('promoEdSaveBtn');
+    const saveStatus = document.getElementById('promoSaveStatus');
+    const bodyEditor = document.getElementById('promoEdBody');
+    const linkBtn    = document.getElementById('promoLinkBtn');
+    const preview    = document.getElementById('promoWidgetPreview');
+
+    // Keys for each field
+    const KEYS = {
+      badge:    'popup_badge',
+      title:    'popup_title',
+      body:     'popup_text',
+      btnLabel: 'popup_cta_label',
+      btnUrl:   'popup_cta_url',
+    };
+
+    // Populate from contentMap
+    function loadFields() {
+      const get = (k) => contentMap[k] ? contentMap[k].value : '';
+      document.getElementById('promoEdBadge').value    = get(KEYS.badge)    || 'Family Plan Promo';
+      document.getElementById('promoEdTitle').value    = get(KEYS.title)    || 'More Cars, More Savings!';
+      document.getElementById('promoEdBtnLabel').value = get(KEYS.btnLabel) || 'Get the Family Plan';
+      document.getElementById('promoEdBtnUrl').value   = get(KEYS.btnUrl)   || '#membership';
+      bodyEditor.innerHTML = get(KEYS.body) ||
+        'Have more than one vehicle at home?<br>Get <strong>50% off</strong> every additional car with our <strong>Family Plan</strong>.';
+    }
+
+    // Build live preview
+    function updatePreview() {
+      const badge    = document.getElementById('promoEdBadge').value.trim();
+      const title    = document.getElementById('promoEdTitle').value.trim();
+      const body     = bodyEditor.innerHTML.trim();
+      const btnLabel = document.getElementById('promoEdBtnLabel').value.trim();
+
+      if (!badge && !title && !body && !btnLabel) {
+        preview.innerHTML = '<p class="ann-preview-empty">Fill in the fields to see a preview</p>';
+        return;
+      }
+
+      preview.innerHTML = `
+        <div class="promo-modal">
+          <button class="promo-close" tabindex="-1">&times;</button>
+          ${badge    ? `<div class="promo-badge">${badge}</div>`   : ''}
+          ${title    ? `<h2 class="promo-title">${title}</h2>`     : ''}
+          ${body     ? `<p class="promo-text">${body}</p>`         : ''}
+          ${btnLabel ? `<button class="btn btn-primary btn-lg promo-cta">${btnLabel}</button>` : ''}
+        </div>`;
+    }
+
+    // ── Open / Close ──
+    floatBtn.addEventListener('click', () => {
+      loadFields();
+      modal.classList.remove('hidden');
+      updatePreview();
+    });
+    function closeModal() { modal.classList.add('hidden'); }
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    // ── Live preview ──
+    ['promoEdBadge', 'promoEdTitle', 'promoEdBtnLabel', 'promoEdBtnUrl'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updatePreview);
+    });
+    bodyEditor.addEventListener('input', updatePreview);
+
+    // ── WYSIWYG toolbar ──
+    const FORMAT_MAP = { bold: 'strong', italic: 'em', underline: 'u' };
+    document.querySelectorAll('.promo-tb-btn[data-cmd]').forEach(btn => {
+      btn.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        const cmd = btn.dataset.cmd;
+        if (cmd === 'unlink') {
+          promoRemoveLink();
+        } else {
+          const tag = FORMAT_MAP[cmd];
+          if (tag) promoApplyFormat(tag);
+        }
+        updatePreview();
+      });
+    });
+
+    function promoApplyFormat(tag) {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount || sel.isCollapsed) return;
+      const range = sel.getRangeAt(0);
+      let ancestor = range.commonAncestorContainer;
+      if (ancestor.nodeType === Node.TEXT_NODE) ancestor = ancestor.parentElement;
+      const existing = ancestor.closest(tag);
+      if (existing) { existing.replaceWith(...existing.childNodes); return; }
+      const el = document.createElement(tag);
+      try { range.surroundContents(el); } catch (_) { el.appendChild(range.extractContents()); range.insertNode(el); }
+      sel.removeAllRanges();
+      const nr = document.createRange(); nr.selectNodeContents(el); sel.addRange(nr);
+    }
+
+    function promoRemoveLink() {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return;
+      let ancestor = sel.getRangeAt(0).commonAncestorContainer;
+      if (ancestor.nodeType === Node.TEXT_NODE) ancestor = ancestor.parentElement;
+      const a = ancestor.closest('a');
+      if (a) a.replaceWith(...a.childNodes);
+    }
+
+    linkBtn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      const sel = window.getSelection();
+      const saved = sel && sel.rangeCount ? sel.getRangeAt(0).cloneRange() : null;
+      const url = window.prompt('Enter URL:', 'https://');
+      if (url && url.trim() && url !== 'https://') {
+        bodyEditor.focus();
+        if (saved) { const s = window.getSelection(); s.removeAllRanges(); s.addRange(saved); }
+        const a = document.createElement('a');
+        a.href = url.trim(); a.target = '_blank'; a.rel = 'noopener noreferrer';
+        const range = window.getSelection().getRangeAt(0);
+        try { range.surroundContents(a); } catch (_) { a.appendChild(range.extractContents()); range.insertNode(a); }
+        updatePreview();
+      }
+    });
+
+    // ── Save all fields to PocketBase ──
+    saveBtn.addEventListener('click', async () => {
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving…';
+      saveStatus.textContent = '';
+
+      const values = {
+        [KEYS.badge]:    document.getElementById('promoEdBadge').value.trim(),
+        [KEYS.title]:    document.getElementById('promoEdTitle').value.trim(),
+        [KEYS.body]:     bodyEditor.innerHTML.trim(),
+        [KEYS.btnLabel]: document.getElementById('promoEdBtnLabel').value.trim(),
+        [KEYS.btnUrl]:   document.getElementById('promoEdBtnUrl').value.trim() || '#membership',
+      };
+
+      try {
+        for (const [key, value] of Object.entries(values)) {
+          const existing = contentMap[key];
+          let record;
+          if (existing && existing.pbId) {
+            const res = await fetch(
+              `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records/${existing.pbId}`,
+              { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_value: value }) }
+            );
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            record = await res.json();
+          } else {
+            const res = await fetch(
+              `${APP_CONFIG.POCKETBASE_URL}/api/collections/site_content/records`,
+              { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content_key: key, content_value: value, section: 'promo' }) }
+            );
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            record = await res.json();
+          }
+          contentMap[key] = { pbId: record.id, value };
+
+          // Apply to live DOM (admin page promo elements)
+          const el = document.querySelector(`[data-content-key="${key}"]`);
+          if (el) applyToDOM(el, el.dataset.contentType || 'plain', value);
+        }
+
+        // Apply CTA label + URL to admin promo button
+        const cta = document.getElementById('promoCta');
+        if (cta) {
+          cta.textContent = values[KEYS.btnLabel];
+          cta.href = values[KEYS.btnUrl];
+        }
+
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Widget';
+        closeModal();
+
+      } catch (err) {
+        console.error('[admin] Promo widget save failed:', err);
+        saveStatus.textContent = 'Save failed. Check connection.';
+        saveStatus.className = 'ann-save-status error';
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Widget';
+      }
+    });
   }
 
 })();

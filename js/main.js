@@ -39,6 +39,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           el.textContent = val;
         }
       });
+
+      // Apply promo CTA URL (href can't be set via data-content-key)
+      if (map['popup_cta_url']) {
+        const cta = document.getElementById('promoCta');
+        if (cta) cta.href = map['popup_cta_url'];
+      }
     } catch (err) {
       console.warn('[content] Failed to load site overrides:', err);
     }

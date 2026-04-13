@@ -1121,11 +1121,20 @@
   </div>
 </div>
 
-<!-- ========== ANNOUNCEMENT WIDGET EDITOR ========== -->
-<button id="annFloatBtn" type="button" class="ann-float-btn hidden">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L2 10l7 4 3 7 10-18z"/></svg>
-  Edit Announcement Widget
-</button>
+<!-- ========== FLOATING EDITOR BUTTONS ========== -->
+<div id="adminFloatGroup" class="admin-float-group hidden">
+
+  <button id="annFloatBtn" type="button" class="admin-float-btn ann-float-btn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L2 10l7 4 3 7 10-18z"/></svg>
+    Edit Announcement
+  </button>
+
+  <button id="promoFloatBtn" type="button" class="admin-float-btn promo-float-btn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Edit Promo Widget
+  </button>
+
+</div>
 
 <div id="annModal" class="ann-modal-overlay hidden">
   <div class="ann-modal">
@@ -1206,6 +1215,87 @@
       <div class="ann-footer-btns">
         <button type="button" id="annCancelBtn" class="btn admin-btn-cancel">Cancel</button>
         <button type="button" id="annSaveBtn"   class="btn admin-btn-save">Save Widget</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== PROMO WIDGET EDITOR ========== -->
+<div id="promoModal" class="ann-modal-overlay hidden">
+  <div class="ann-modal">
+
+    <div class="ann-modal-header" style="background:#c0392b;">
+      <h3 class="ann-modal-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Promo Widget
+      </h3>
+      <button type="button" id="promoModalClose" class="ann-modal-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="ann-modal-body">
+
+      <!-- ── EDITOR ── -->
+      <div class="ann-editor-col">
+
+        <div class="ann-field-group">
+          <label class="ann-label">Badge Text <span class="ann-optional">pill label at the top</span></label>
+          <input type="text" id="promoEdBadge" class="ann-input" placeholder="Family Plan Promo">
+        </div>
+
+        <div class="ann-field-group">
+          <label class="ann-label">Heading</label>
+          <input type="text" id="promoEdTitle" class="ann-input" placeholder="More Cars, More Savings!">
+        </div>
+
+        <div class="ann-field-group">
+          <label class="ann-label">Body Text <span class="ann-optional">supports formatting</span></label>
+          <div class="ann-wysiwyg-toolbar" id="promoToolbar">
+            <button type="button" data-cmd="bold"      class="ann-tb-btn promo-tb-btn" title="Bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"    class="ann-tb-btn promo-tb-btn" title="Italic"><i>I</i></button>
+            <button type="button" data-cmd="underline" class="ann-tb-btn promo-tb-btn" title="Underline"><u>U</u></button>
+            <span class="ann-tb-sep"></span>
+            <button type="button" id="promoLinkBtn"    class="ann-tb-btn promo-tb-btn" title="Insert link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </button>
+            <button type="button" data-cmd="unlink"    class="ann-tb-btn promo-tb-btn" title="Remove link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+            </button>
+          </div>
+          <div id="promoEdBody" class="ann-body-editor" contenteditable="true" data-placeholder="Write your promo message…"></div>
+        </div>
+
+        <div class="ann-field-row">
+          <div class="ann-field-group">
+            <label class="ann-label">Button Label</label>
+            <input type="text" id="promoEdBtnLabel" class="ann-input" placeholder="Get the Family Plan">
+          </div>
+          <div class="ann-field-group">
+            <label class="ann-label">Button URL</label>
+            <input type="text" id="promoEdBtnUrl" class="ann-input" placeholder="#membership">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── PREVIEW ── -->
+      <div class="ann-preview-col">
+        <p class="ann-preview-label">Live Preview</p>
+        <div class="ann-preview-scene">
+          <div id="promoWidgetPreview" class="promo-preview-wrap">
+            <p class="ann-preview-empty">Fill in the fields to see a preview</p>
+          </div>
+        </div>
+        <p class="ann-preview-hint">This is exactly what your visitors will see.</p>
+      </div>
+
+    </div><!-- /.ann-modal-body -->
+
+    <div class="ann-modal-footer">
+      <p class="ann-save-status" id="promoSaveStatus"></p>
+      <div class="ann-footer-btns">
+        <button type="button" id="promoCancelBtn" class="btn admin-btn-cancel">Cancel</button>
+        <button type="button" id="promoEdSaveBtn" class="btn admin-btn-save">Save Widget</button>
       </div>
     </div>
 

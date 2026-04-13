@@ -433,43 +433,51 @@ body.admin-mode .faq-item {
    ANNOUNCEMENT WIDGET EDITOR
 ══════════════════════════════════════════════════════ */
 
-/* ── Floating trigger button ── */
-.ann-float-btn {
-  display: none; /* hidden by default; shown in admin mode */
+/* ── Floating editor button group ── */
+.admin-float-group {
   position: fixed;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 9990;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.admin-float-group.hidden { display: none; }
+
+/* Individual float buttons (inside group) */
+.admin-float-btn {
+  display: flex;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  background: #1a2e5a;
-  color: #f5c518;
   border: none;
   border-radius: 12px 0 0 12px;
   padding: 18px 10px;
   font-size: 0.78rem;
   font-weight: 700;
+  font-family: inherit;
   letter-spacing: 0.05em;
   cursor: pointer;
-  z-index: 9990;
   box-shadow: -3px 0 20px rgba(0,0,0,0.2);
-  transition: background 0.2s, padding 0.2s;
+  transition: background 0.2s;
   white-space: nowrap;
 }
-.ann-float-btn svg {
+.admin-float-btn svg {
   writing-mode: horizontal-tb;
   flex-shrink: 0;
 }
-.ann-float-btn:hover {
-  background: #f5c518;
-  color: #1a2e5a;
-}
-body.admin-mode .ann-float-btn {
-  display: flex;
-}
+
+/* Announcement button — navy/yellow */
+.ann-float-btn { background: #1a2e5a; color: #f5c518; }
+.ann-float-btn:hover { background: #f5c518; color: #1a2e5a; }
+
+/* Promo button — red/white */
+.promo-float-btn { background: #c0392b; color: #fff; }
+.promo-float-btn:hover { background: #e74c3c; color: #fff; }
 
 /* ── Modal overlay ── */
 .ann-modal-overlay {
@@ -837,10 +845,33 @@ body.admin-mode .ann-float-btn {
   border: none;
 }
 
-/* ── Re-enable all interactions inside the announcement modal and float btn ── */
-body.admin-mode .ann-float-btn,
+/* ── Re-enable all interactions in float group and both editor modals ── */
+body.admin-mode .admin-float-group,
+body.admin-mode .admin-float-btn,
 body.admin-mode .ann-modal button,
 body.admin-mode .ann-modal input,
-body.admin-mode .ann-modal [contenteditable] {
+body.admin-mode .ann-modal [contenteditable],
+body.admin-mode #promoModal button,
+body.admin-mode #promoModal input,
+body.admin-mode #promoModal [contenteditable] {
   pointer-events: auto !important;
+}
+
+/* ── Promo preview card (reuses style.css promo classes) ── */
+.promo-preview-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.promo-preview-wrap .promo-modal {
+  position: relative;
+  transform: none;
+  opacity: 1;
+  pointer-events: none;
+  max-width: 260px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+.promo-preview-wrap .promo-close {
+  pointer-events: none;
 }
